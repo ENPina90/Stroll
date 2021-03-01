@@ -10,20 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_01_162308)
+ActiveRecord::Schema.define(version: 2021_03_01_162308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "stroll_settings", force: :cascade do |t|
-    t.string "type"
-    t.integer "significance"
-    t.integer "cost"
-    t.boolean "newnes"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_stroll_settings_on_user_id"
 
   create_table "locations", force: :cascade do |t|
     t.string "name"
@@ -39,7 +29,17 @@ ActiveRecord::Schema.define(version: 2021_03_01_162308)
     t.string "photo_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
 
+  create_table "stroll_settings", force: :cascade do |t|
+    t.string "type"
+    t.integer "significance"
+    t.integer "cost"
+    t.boolean "newnes"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_stroll_settings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

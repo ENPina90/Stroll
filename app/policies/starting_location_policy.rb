@@ -1,5 +1,4 @@
-
-class WalkPolicy < ApplicationPolicy
+class StartingLocationPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all

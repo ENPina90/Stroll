@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   get "/components", to: "pages#components"
   
   resources :locations, only: [ :new, :create, :show, :index ]
+  resources :walks do
+    resources :starting_locations, only: [ :index, :show ]
+  end
 end

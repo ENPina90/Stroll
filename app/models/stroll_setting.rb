@@ -2,8 +2,8 @@ class StrollSetting < ApplicationRecord
   belongs_to :user
   has_many :walks
 
-  validates :type, presence: true
+  validates :category, presence: true
   validates :significance, presence: true
   validates :cost, presence: true
-  validates :newnes, presence: true
+  validates :newness, presence: true
 end

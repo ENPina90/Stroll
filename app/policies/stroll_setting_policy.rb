@@ -1,5 +1,4 @@
-
-class WalkPolicy < ApplicationPolicy
+class StrollSettingPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all

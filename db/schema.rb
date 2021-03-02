@@ -10,10 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_01_135910) do
+ActiveRecord::Schema.define(version: 2021_03_01_162308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "locations", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.float "lattitude"
+    t.float "longitude"
+    t.string "category"
+    t.integer "cost"
+    t.integer "significance"
+    t.string "keywords"
+    t.string "info"
+    t.text "content"
+    t.string "photo_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "stroll_settings", force: :cascade do |t|
+    t.string "type"
+    t.integer "significance"
+    t.integer "cost"
+    t.boolean "newnes"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_stroll_settings_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +54,21 @@ ActiveRecord::Schema.define(version: 2021_03_01_135910) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "walks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "starting_location"
+    t.string "ending_location"
+    t.bigint "stroll_setting_id", null: false
+    t.integer "significance"
+    t.string "category"
+    t.integer "cost"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["stroll_setting_id"], name: "index_walks_on_stroll_setting_id"
+    t.index ["user_id"], name: "index_walks_on_user_id"
+  end
+
+  add_foreign_key "stroll_settings", "users"
+  add_foreign_key "walks", "stroll_settings"
+  add_foreign_key "walks", "users"
 end

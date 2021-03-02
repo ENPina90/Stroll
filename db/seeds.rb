@@ -10,3 +10,4 @@ StrollSetting.create(user: User.last)
 Walk.create(user: User.last, stroll_setting: StrollSetting.last)
 StartingLocation.create(address: "Brunnenstrasse 13, 10119 Berlin", walk: Walk.last)
 EndingLocation.create(address: "Alexanderplatz, Berlin", walk: Walk.last)
+

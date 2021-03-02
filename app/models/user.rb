@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :walks
   has_many :starred_locations
+  has_many :locations, through: :starred_locations
   has_many :stroll_settings
   # mabybe has_one :stroll_setting, through: :walks
 end

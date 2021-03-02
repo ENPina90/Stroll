@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2021_03_02_104420) do
-
+ActiveRecord::Schema.define(version: 2021_03_02_111529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +41,15 @@ ActiveRecord::Schema.define(version: 2021_03_02_104420) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "starred_locations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "location_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["location_id"], name: "index_starred_locations_on_location_id"
+    t.index ["user_id"], name: "index_starred_locations_on_user_id"
+  end
+
   create_table "starting_locations", force: :cascade do |t|
     t.bigint "walk_id", null: false
     t.string "address"
@@ -53,11 +60,20 @@ ActiveRecord::Schema.define(version: 2021_03_02_104420) do
     t.index ["walk_id"], name: "index_starting_locations_on_walk_id"
   end
 
+  create_table "stroll_locations", force: :cascade do |t|
+    t.bigint "location_id", null: false
+    t.bigint "walk_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["location_id"], name: "index_stroll_locations_on_location_id"
+    t.index ["walk_id"], name: "index_stroll_locations_on_walk_id"
+  end
+
   create_table "stroll_settings", force: :cascade do |t|
-    t.string "type"
+    t.string "category"
     t.integer "significance"
     t.integer "cost"
-    t.boolean "newnes"
+    t.boolean "newness"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -89,7 +105,11 @@ ActiveRecord::Schema.define(version: 2021_03_02_104420) do
   end
 
   add_foreign_key "ending_locations", "walks"
+  add_foreign_key "starred_locations", "locations"
+  add_foreign_key "starred_locations", "users"
   add_foreign_key "starting_locations", "walks"
+  add_foreign_key "stroll_locations", "locations"
+  add_foreign_key "stroll_locations", "walks"
   add_foreign_key "stroll_settings", "users"
   add_foreign_key "walks", "stroll_settings"
   add_foreign_key "walks", "users"

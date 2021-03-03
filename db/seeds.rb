@@ -63,3 +63,28 @@ locations.each do |location|
   puts location['headline']
   puts Location.last
 end
+
+require 'csv'
+
+csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
+filepath    = 'db/StrollArchitecture.csv'
+
+CSV.foreach(filepath, csv_options) do |row|
+  Location.create!(
+    name: row['name'],
+    address: row['address'],
+    latitude: row['latitude'],
+    longitude: row['longitude'],
+    keywords: row['era'],
+    creator: "Architect: #{row['architect']}",
+    date: "Built: #{row['date']}",
+    content: row['Description'],
+    sources: "Berlin: The Architecture Guide by  Philipp Meuser",
+    cost: 0,
+    significance: 2,
+    lang: "en",
+    category: "Architecture"
+  )
+  puts row['name']
+  puts Location.last
+end

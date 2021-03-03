@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 2021_03_02_153348) do
     t.integer "significance"
     t.string "keywords"
     t.string "info"
+    t.string "date"
+    t.string "creator"
     t.text "intro"
     t.text "content"
     t.text "facts"

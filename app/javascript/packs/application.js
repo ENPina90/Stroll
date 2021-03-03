@@ -34,7 +34,9 @@ document.addEventListener('turbolinks:load', () => {
 });
 
 import { initMapbox } from '../plugins/init_mapbox';
+import { initMapboxRoute } from '../plugins/init_mapbox_route';
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
+  initMapboxRoute();
 })

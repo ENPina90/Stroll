@@ -5,5 +5,5 @@ class StrollSetting < ApplicationRecord
   validates :category, presence: true
   validates :significance, presence: true
   validates :cost, presence: true
-  validates :newness, presence: true
+  # validates :newness, presence: true
 end

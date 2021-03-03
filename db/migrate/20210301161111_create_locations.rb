@@ -10,9 +10,13 @@ class CreateLocations < ActiveRecord::Migration[6.0]
       t.integer :significance
       t.string :keywords
       t.string :info
+      t.text :intro
       t.text :content
+      t.text :facts
       t.string :photo_url
-
+      t.string :photo_caption
+      t.string :sources
+      t.string :lang
       t.timestamps
     end
   end

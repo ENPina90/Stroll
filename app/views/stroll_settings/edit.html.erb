@@ -1,0 +1,10 @@
+<div class="container">
+<h1>Set your preferences!</h1>
+  <%= simple_form_for @stroll_setting do |f| %>
+    <%= f.input :category %>
+    <%= f.input :significance %>
+    <%= f.input :cost, as: :radio_buttons %>
+    <%= f.input :newness, as: :radio_buttons %>
+    <%= f.button :submit, class: "" %>
+  <% end %>
+</div>

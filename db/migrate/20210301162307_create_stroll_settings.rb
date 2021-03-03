@@ -4,7 +4,7 @@ class CreateStrollSettings < ActiveRecord::Migration[6.0]
       t.string :category
       t.integer :significance
       t.integer :cost
-      t.boolean :newness
+      t.boolean :newness, default: false
       t.references :user, null: false, foreign_key: true
 
       t.timestamps

@@ -1,0 +1,13 @@
+<div id="map-route"
+     style="width: 100%; height: 600px;"
+     data-markers="<%= @markers.to_json %>"
+     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
+<p data-coordinates="[-122.662323, 45.523751]" id="start"></p>
+<p data-coordinates="[-122.762323, 45.543751]" id="end"></p>
+<p data-coordinates="[-122.862353, 45.543751]" id="loc1"></p>
+
+
+<%# var start = [-122.662323, 45.523751];
+var end = [-122.762323, 45.543751];
+var loc1 = [-122.862353, 45.543751]; %>

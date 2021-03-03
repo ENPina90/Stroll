@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="application.scss">
 <br>
 <h1>Colors</h1>
+  <h4>Buttons are for color reference only, please don't use these</h4>
   <h4>$primary - class="..."</h4>
     <div class="text-primary">text-primary</div>
     <div class="bg-primary" style="width: 160px; height: 80px">bg-primary</div>
@@ -34,14 +35,15 @@
 <br>
 <br>
 <h1>Buttons</h1>
+  <h4>Remember to change the # for the path!!</h4>
   <h4>Circle Button - class="btn btn-round btn-primary"</h4>
-    <div class="btn-round btn-primary">Round</div>
+    <%= link_to "Round", "#", class: "btn-round btn-primary" %>
   <br>
   <h4>Square Button - class="btn btn-square btn-primary"</h4>
-    <div class="btn-square btn-primary">Button</div>
+    <%= link_to "Square", "#", class: "btn-square btn-primary" %>
   <br>
-  <h4>Tilted Button - class="btn btn-tilt btn-primary"</h4>
-    <div class="btn-tilt btn-primary">Button</div>
+  <h4>Tilt Button - class="btn btn-tilt btn-primary"</h4>
+    <%= link_to "Tilt", "#", class: "btn btn-tilt btn-primary" %>
 <br>
 <br>
 <h1>Card</h1>
@@ -52,3 +54,15 @@
   <div class="card-cover gradient" style="width: 300px; height: 200px">
     <p class="title">Stroll</p><br>
   </div>
+<br>
+<br>
+<h1>Avatar</h1>
+  <h4>Avatar - class="avatar" (Change the picture URL!!!)</h4>
+  <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar", alt: "avatar" %>
+  <br>
+  <h4>Avatar large - class="avatar-large" (Change the picture URL!!!)</h4>
+  <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>
+<br>
+<br>
+<h1>Navbar</h1>
+  

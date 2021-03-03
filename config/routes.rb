@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :users, only: [ :show ] do
     resources :stroll_setting, only: [ :show, :edit, :create, :update ]
   end
+
   resources :locations, only: [ :new, :create, :show, :index ]
   resources :walks do
     resources :starting_locations, only: [ :index, :show ]

@@ -1,7 +1,16 @@
 .navbar {
+  display: flex;
+  width: 100%;
   justify-content: space-between;
-  background-color: transparent;;
+  align-items: center;
+  background-color: transparent;
   height: 40px;
+  padding: 0px;
+  position: absolute;
+}
+
+.navbar-dark {
+  color: $secondary;
 }
 
 .navbar .navbar-collapse {

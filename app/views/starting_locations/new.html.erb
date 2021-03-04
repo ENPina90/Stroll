@@ -1,0 +1,11 @@
+
+<header>
+  <div class="header_curve"></div>
+
+ <%= simple_form_for [@walk, @starting_location] do |f| %>
+  <%= f.input :address, label: false %>
+  <%= f.submit "start", class: "btn btn-primary" %>
+ <% end %>
+
+</header>
+

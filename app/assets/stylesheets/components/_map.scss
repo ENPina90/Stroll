@@ -9,16 +9,17 @@
 
 #instructions {
   position: absolute;
-  margin: 20px;
-  width: 25%;
-  top: 0;
-  bottom: 20%;
-  padding: 20px;
+  // margin: 20px;
+  // width: 88%;
+  top: 375px;
+  // bottom: 8%;
+  padding: 0px 8px;
   background-color: rgba(255, 255, 255, 0.9);
   overflow-y: scroll;
   font-family: sans-serif;
   font-size: 0.8em;
   line-height: 2em;
+  max-height: 230px;
 }
 
 .duration {

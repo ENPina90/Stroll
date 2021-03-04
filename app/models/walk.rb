@@ -8,7 +8,7 @@ class Walk < ApplicationRecord
 
   # validates :starting_location, presence: true
   # validates :ending_location, presence: true
-  validates :significance, presence: true
-  validates :category, presence: true
-  validates :cost, presence: true
+  # validates :significance, presence: true
+  # validates :category, presence: true
+  # validates :cost, presence: true
 end

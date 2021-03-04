@@ -9,6 +9,6 @@ Rails.application.routes.draw do
 
   resources :locations, only: [ :new, :create, :show, :index ]
   resources :walks do
-    resources :starting_locations, only: [ :index, :show ]
+    resources :starting_locations, only: [ :index, :show, :new, :create ]
   end
 end

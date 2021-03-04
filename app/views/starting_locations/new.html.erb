@@ -1,11 +1,14 @@
-
-<header>
-  <div class="header_curve"></div>
-
- <%= simple_form_for [@walk, @starting_location] do |f| %>
-  <%= f.input :address, label: false %>
-  <%= f.submit "start", class: "btn btn-primary" %>
- <% end %>
-
-</header>
-
+<div id="home-container">
+  <div class="strollbanner">
+    <div class="logobig">
+      <%= simple_form_for [@walk, @starting_location] do |f| %>
+        <%= f.input :address, placeholder: "Location " ,label: false %>
+        <%= f.submit "go!", class: "btn btn-info" %>
+       <% end %>
+    </div>
+  </div>
+  <ul style="list-style: none;">
+    <li class="mb-3" style="color:#2196F3;"><i class="fas fa-location-arrow"></i>   Current location</li>
+    <li style="color:#C24F4A;"><i class="fas fa-question"></i>   Randomized Location</li>
+  </ul>
+</div>

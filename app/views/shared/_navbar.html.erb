@@ -1,9 +1,9 @@
-<div class="navbar navbar-expand-sm navbar-light navbar <%= yield(:navbar_class) %>">
+<div class="navbar navbar-nav navbar-expand-sm navbar-light navbar <%= yield(:navbar_class) %>">
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-  <ul class="navbar-nav mr-auto">
+  <ul class="navbar-nav ml-auto">
   <!-- Left icon dropdown -->
-  <li class="nav-item sm-3 me-3 me-lg-0 dropdown">
+  <li class="nav-item dropdown">
     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
       <i class="fas fa-bars text-warning"></i>
     </a>
@@ -17,13 +17,13 @@
   </ul>
   </div>
 
-  <%= link_to "Stroll", root_path, class: "nav-link text-warning subtitle nav-item sm-3" %>
+  <%= link_to "Stroll", root_path, class: "nav-link text-warning subtitle nav-item" %>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
       <!-- Right icon dropdown -->
-      <li class="nav-item  sm-3 me-3 me-lg-0 dropdown">
+      <li class="nav-item dropdown">
         <a
           class="nav-link"
           href="#"

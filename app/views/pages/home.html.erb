@@ -4,20 +4,22 @@
   <div class="strollbanner">
     <%= image_tag "stroll_logo.png", class: "logobig" %>
   </div>
-   <div class="h-100">
+   <div class="h-50">
     <div class="d-flex justify-content-around">
-      <div class="btn-tilt">thing</div>
-      <div class="btn-tilt">other</div>
-      <div class="btn-tilt">other</div>
+      <%= link_to "Stroll", root_path, class: "btn-tilt" %>
+      <%= link_to "Map", root_path, class: "btn-tilt" %>
+      <%= link_to "Shared", root_path, class: "btn-tilt" %>
     </div>
     <br>
     <br>
     <div class="d-flex justify-content-around mt-10">
-      <div class="btn-tilt">thing</div>
-      <div class="btn-tilt">other</div>
-      <div class="btn-tilt">other</div>
+      <%= link_to "Preferences", root_path, class: "btn-tilt" %>
+      <%= link_to "Saved", root_path, class: "btn-tilt" %>
+      <%= link_to "Profile", root_path, class: "btn-tilt" %>
     </div>
-    <br>
+    <div class="strollfooter">
+      <%= image_tag "stroll_logo.png", class: "logobig" %>
+    </div>
   </div>
 </div>
 

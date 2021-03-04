@@ -2,9 +2,10 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 
-var start = JSON.parse(document.getElementById("start").dataset.coordinates)
+
 
 const buildMap = (mapElement) => {
+  var start = JSON.parse(document.getElementById("start").dataset.coordinates)
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
   return new mapboxgl.Map({
     container: 'map-route',
@@ -71,7 +72,7 @@ const initMapboxRoute = () => {
         },
         paint: {
           'circle-radius': 10,
-          'circle-color': '#ffffff'
+          'circle-color': '#000000'
         }
       });
       map.addLayer({
@@ -94,7 +95,7 @@ const initMapboxRoute = () => {
         },
         paint: {
           'circle-radius': 10,
-          'circle-color': '#5F96A6'
+          'circle-color': '#000000'
         }
       });
       map.addLayer({
@@ -234,9 +235,6 @@ const initMapboxRoute = () => {
           'circle-radius': 10,
           'circle-color': '#5F96A6'
         }
-      });
-      map.on('load', function () {
-        map.resize();
       });
       getRoute(end, map);
     });

@@ -5,9 +5,14 @@ class WalksController < ApplicationController
     authorize @walk
   end
 
+
   private
 
+  def walk_params
+    params.require(:walk).permit(:stroll_setting_id)
+  end
+
   def set_walk
-    @walk = Walk.find(params[:id])
+    @walk = current_user.walks.last
   end
 end

@@ -1,5 +1,11 @@
 class StrollSettingsController < ApplicationController
-  before_action :set_stroll_setting, only: %i[show edit update]
+  before_action :set_stroll_setting, only: %i[show edit update create new]
+
+  def new
+    @stroll_setting = StrollSetting.new
+    @user = User.find(params[:user_id])
+    authorize @stroll_setting
+  end
 
   def show
     authorize @stroll_setting
@@ -23,7 +29,7 @@ class StrollSettingsController < ApplicationController
   def update
     authorize @stroll_setting
     if @stroll_setting.update!(stroll_setting_params)
-      redirect_to stroll_setting_path(@stroll_setting), notice: 'Settings were successfully updated'
+      redirect_to edit_stroll_setting_path(@stroll_setting), notice: 'Settings were successfully updated'
     else
       render :edit
     end
@@ -36,6 +42,6 @@ class StrollSettingsController < ApplicationController
   end
 
   def set_stroll_setting
-    @stroll_setting = StrollSetting.where(user: current_user).find(params[:id])
+    @stroll_setting = current_user.stroll_setting
   end
 end

@@ -4,24 +4,31 @@
 
 .mapboxgl-popup-content {
   text-align: center;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Helvetica', sans-serif;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.header-info-box {
+  font-family: 'Fira Sans';
+  font-weight: medium;
 }
 
 #instructions {
   position: absolute;
-  // margin: 20px;
-  // width: 88%;
-  top: 375px;
-  // bottom: 8%;
-  padding: 0px 8px;
+  width: 75%;
+  padding: 0px 12px;
   background-color: rgba(255, 255, 255, 0.9);
   overflow-y: scroll;
-  font-family: sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 0.8em;
   line-height: 2em;
-  max-height: 230px;
+  max-height: 35vh;
+  margin-left: 13vw;
+  margin-right: 13vw;
+  bottom: 7vh;
 }
 
-.duration {
+#instructions .directions {
   font-size: 2em;
 }

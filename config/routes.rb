@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get "/components", to: "pages#components"
   resources :users, only: [ :show ]
-  resources :stroll_setting, only: [ :edit, :create, :update ]
+  resources :stroll_settings, only: [ :edit, :create, :update ]
 
 
   resources :locations, only: [ :new, :create, :show, :index ]

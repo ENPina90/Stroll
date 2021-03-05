@@ -1,0 +1,52 @@
+.settings {
+  ul {
+    list-style-type: none;
+  }
+
+  li {
+    display: inline-block;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+  }
+
+  label:before {
+    color: white;
+    // content: "Bar";
+    display: block;
+    border-radius: 50%;
+    border: 1px solid grey;
+    position: absolute;
+  }
+
+  label img {
+    height: 100px;
+    width: 100px;
+    transition-duration: 0.2s;
+    transform-origin: 50% 50%;
+    filter: grayscale(100%);
+  }
+
+
+  :checked + label img {
+    box-shadow: 0 0 5px #333;
+    filter: grayscale(0%);
+  }
+
+  .category {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
+
+
+}

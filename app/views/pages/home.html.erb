@@ -5,7 +5,9 @@
   </div>
    <div class="h-50">
     <div class="d-flex justify-content-around">
+
       <%= link_to image_tag("btn_stroll"), new_walk_starting_location_path(current_user.stroll_setting.walk)%>
+
       <%= link_to image_tag("btn_map"), locations_path %>
       <%= link_to image_tag("btn_shared"), root_path %>
     </div>

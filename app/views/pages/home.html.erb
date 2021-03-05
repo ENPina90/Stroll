@@ -5,15 +5,15 @@
   </div>
    <div class="h-50">
     <div class="d-flex justify-content-around">
-      <%= link_to image_tag("btn_stroll"), "http://localhost:3000/walks/1/starting_locations/new" %>
+      <%= link_to image_tag("btn_stroll"), new_walk_starting_location_path(current_user.stroll_setting.walk)%>
       <%= link_to image_tag("btn_map"), locations_path %>
       <%= link_to image_tag("btn_shared"), root_path %>
     </div>
     <br>
     <br>
     <div class="d-flex justify-content-around mt-10">
-      <%= link_to image_tag("btn_interests"), "http://localhost:3000/stroll_settings/1/edit" %>
-      <%= link_to image_tag("btn_saved"), "http://localhost:3000/walks/1" %>
+      <%= link_to image_tag("btn_interests"), edit_stroll_setting_path(current_user.stroll_setting) %>
+      <%= link_to image_tag("btn_saved"), walk_path(current_user.stroll_setting.walk) %>
       <%= link_to image_tag("btn_profile"), root_path %>
     </div>
     <div class="strollfooter">

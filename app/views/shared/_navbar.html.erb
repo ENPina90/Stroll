@@ -9,8 +9,7 @@
         <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown1">
           <%= link_to "New Stroll", new_walk_starting_location_path(current_user.stroll_setting.walk), class: "dropdown-item"  if user_signed_in?%>
           <%= link_to "Explore", locations_path, class: "dropdown-item"  if user_signed_in? %>
-          <%= link_to "Saved Strolls", "http://localhost:3000/walks/1", class: "dropdown-item" if user_signed_in? %>
-          <%= link_to "Shared Strolls", "#", class: "dropdown-item"  if user_signed_in? %>
+
         </div>
     </div>
   </div>

@@ -6,17 +6,17 @@
    <div class="h-50">
     <div class="d-flex justify-content-around">
 
-      <%= link_to image_tag("btn_stroll"), new_walk_starting_location_path(current_user.stroll_setting.walk) if user_signed_in?%>
+      <%= link_to image_tag("btn_stroll.svg"), new_walk_starting_location_path(current_user.stroll_setting.walk) if user_signed_in?%>
 
-      <%= link_to image_tag("btn_map"), locations_path if user_signed_in?%>
-      <%= link_to image_tag("btn_shared"), root_path if user_signed_in? %>
+      <%= link_to image_tag("btn_map.svg"), locations_path if user_signed_in?%>
+      <%= link_to image_tag("btn_shared.svg"), root_path if user_signed_in? %>
     </div>
     <br>
     <br>
     <div class="d-flex justify-content-around mt-10">
-      <%= link_to image_tag("btn_interests"), edit_stroll_setting_path(current_user.stroll_setting) if user_signed_in? %>
-      <%= link_to image_tag("btn_saved"), walk_path(current_user.stroll_setting.walk) if user_signed_in? %>
-      <%= link_to image_tag("btn_profile"), root_path if user_signed_in? %>
+      <%= link_to image_tag("btn_interests.svg"), edit_stroll_setting_path(current_user.stroll_setting) if user_signed_in? %>
+      <%= link_to image_tag("btn_saved.svg"), walk_path(current_user.stroll_setting.walk) if user_signed_in? %>
+      <%= link_to image_tag("btn_profile.svg"), root_path if user_signed_in? %>
     </div>
     <div class="strollfooter">
     </div>

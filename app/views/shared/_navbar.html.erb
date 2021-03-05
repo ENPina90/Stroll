@@ -7,13 +7,16 @@
         <i class="fas fa-bars text-warning"></i>
       </a>
         <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown1">
-
+          <%= link_to "Home", root_path, class: "dropdown-item"  if user_signed_in?%>
+          <%= link_to "Explore", locations_path, class: "dropdown-item"  if user_signed_in? %>
+          <%= link_to "Saved Strolls", "#", class: "dropdown-item" if user_signed_in? %>
+          <%= link_to "Shared Strolls", "#", class: "dropdown-item"  if user_signed_in? %>
         </div>
     </div>
   </div>
 
   <!-- Middle link -->
-  <%= link_to "stroll", root_path, class: "nav-link subtitle nav-item text-warning" %>
+  <%= link_to "", root_path, class: "nav-link subtitle nav-item text-warning" %>
 
 
   <div>

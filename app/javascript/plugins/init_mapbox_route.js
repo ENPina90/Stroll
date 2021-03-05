@@ -52,190 +52,126 @@ const initMapboxRoute = () => {
       var loc5 = JSON.parse(document.getElementById("loc5").dataset.coordinates)
       var loc6 = JSON.parse(document.getElementById("loc6").dataset.coordinates)
       getRoute(end, map);
-      map.addLayer({
-        id: 'point',
-        type: 'circle',
-        source: {
-          type: 'geojson',
-          data: {
-            type: 'FeatureCollection',
-            features: [{
-              type: 'Feature',
-              properties: {},
-              geometry: {
-                type: 'Point',
-                coordinates: start
-              }
+      map.addControl(
+        new mapboxgl.GeolocateControl({
+          positionOptions: {
+            enableHighAccuracy: true
+          },
+          trackUserLocation: true
+        })
+      );
+      map.loadImage(
+        '../assets/right_color.png',
+        function (error, image) {
+          if (error) throw error;
+          map.addImage('custom-marker', image);
+          map.addSource('points', {
+            'type': 'geojson',
+            'data': {
+              'type': 'FeatureCollection',
+              'features': [
+                {
+                  'type': 'Feature',
+                  'properties': {
+                    'description':
+                      '<strong>Make it Mount Pleasant</strong><p><a href="http://www.mtpleasantdc.com/makeitmtpleasant" target="_blank" title="Opens in a new window">Make it Mount Pleasant</a> is a handmade and vintage market and afternoon of live entertainment and kids activities. 12:00-6:00 p.m.</p>'
+                  },
+                  'geometry': {
+                    'type': 'Point',
+                    'coordinates': loc1
+                  }
+                },
+                {
+                  'type': 'Feature',
+                  'properties': {},
+                  'geometry': {
+                    'type': 'Point',
+                    'coordinates': loc2
+                  }
+                },
+                {
+                  'type': 'Feature',
+                  'properties': {},
+                  'geometry': {
+                    'type': 'Point',
+                    'coordinates': loc3
+                  }
+                },
+                {
+                  'type': 'Feature',
+                  'properties': {
+                    'description':
+                      '<strong>Waldeckpark</strong><p> Das etwa zwei Hektar große Gelände wurde um 1604 als Pestfriedhof für die Petri-Gemeinde angelegt. Nach und nach entstand aus dem Friedhof eine Grünanlage, die ab dem Jahr 1870 teilweise von den Cöllner Bewohnern kostenfrei genutzt werden konnte...<a href=""> read more</a></p>'
+                  },
+                  'geometry': {
+                    'type': 'Point',
+                    'coordinates': loc4
+                  }
+                },
+                {
+                  'type': 'Feature',
+                  'properties': {},
+                  'geometry': {
+                    'type': 'Point',
+                    'coordinates': loc5
+                  }
+                },
+                {
+                  'type': 'Feature',
+                  'properties': {
+                    'description':
+                      '<strong>Design Academy Berlin</strong><p> Encouraging students from all over the world to translate their curiosity and passion into a career. Being committed to working with teachers...<a href=""> read more</a></p>'
+                  },
+                  'geometry': {
+                    'type': 'Point',
+                    'coordinates': loc6
+                  }
+                },
+                {
+                  'type': 'Feature',
+                  'properties': {
+                    'description':
+                      '<strong>📍You are here</strong>'
+                  },
+                  'geometry': {
+                    'type': 'Point',
+                    'coordinates': start
+                  }
+                },
+                // {
+                //   'type': 'Feature',
+                //   'properties': {},
+                //   'geometry': {
+                //     'type': 'Point',
+                //     'coordinates': end
+                //   }
+                // }
+              ]
             }
-            ]
-          }
-        },
-        paint: {
-          'circle-radius': 10,
-          'circle-color': '#000000'
-        }
-      });
-      map.addLayer({
-        id: 'end-point',
-        type: 'circle',
-        source: {
-          type: 'geojson',
-          data: {
-            type: 'FeatureCollection',
-            features: [{
-              type: 'Feature',
-              properties: {},
-              geometry: {
-                type: 'Point',
-                coordinates: end
-              }
+          });
+          map.on('click', 'symbols', function (e) {
+            var coordinates = e.features[0].geometry.coordinates.slice();
+            var description = e.features[0].properties.description;
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+              coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
             }
-            ]
-          }
-        },
-        paint: {
-          'circle-radius': 10,
-          'circle-color': '#000000'
-        }
-      });
-      map.addLayer({
-        id: 'loc-point',
-        type: 'circle',
-        source: {
-          type: 'geojson',
-          data: {
-            type: 'FeatureCollection',
-            features: [{
-              type: 'Feature',
-              properties: {},
-              geometry: {
-                type: 'Point',
-                coordinates: loc1
-              }
+
+            new mapboxgl.Popup()
+              .setLngLat(coordinates)
+              .setHTML(description)
+              .addTo(map);
+          });
+          map.addLayer({
+            'id': 'symbols',
+            'type': 'symbol',
+            'source': 'points',
+            'layout': {
+              'icon-image': 'custom-marker',
+              'icon-size': 0.06
             }
-            ]
-          }
-        },
-        paint: {
-          'circle-radius': 10,
-          'circle-color': '#5F96A6'
+          });
         }
-      });
-      map.addLayer({
-        id: 'loc2-point',
-        type: 'circle',
-        source: {
-          type: 'geojson',
-          data: {
-            type: 'FeatureCollection',
-            features: [{
-              type: 'Feature',
-              properties: {},
-              geometry: {
-                type: 'Point',
-                coordinates: loc2
-              }
-            }
-            ]
-          }
-        },
-        paint: {
-          'circle-radius': 10,
-          'circle-color': '#5F96A6'
-        }
-      });
-      map.addLayer({
-        id: 'loc3-point',
-        type: 'circle',
-        source: {
-          type: 'geojson',
-          data: {
-            type: 'FeatureCollection',
-            features: [{
-              type: 'Feature',
-              properties: {},
-              geometry: {
-                type: 'Point',
-                coordinates: loc3
-              }
-            }
-            ]
-          }
-        },
-        paint: {
-          'circle-radius': 10,
-          'circle-color': '#5F96A6'
-        }
-      });
-      map.addLayer({
-        id: 'loc4-point',
-        type: 'circle',
-        source: {
-          type: 'geojson',
-          data: {
-            type: 'FeatureCollection',
-            features: [{
-              type: 'Feature',
-              properties: {},
-              geometry: {
-                type: 'Point',
-                coordinates: loc4
-              }
-            }
-            ]
-          }
-        },
-        paint: {
-          'circle-radius': 10,
-          'circle-color': '#5F96A6'
-        }
-      });
-      map.addLayer({
-        id: 'loc5-point',
-        type: 'circle',
-        source: {
-          type: 'geojson',
-          data: {
-            type: 'FeatureCollection',
-            features: [{
-              type: 'Feature',
-              properties: {},
-              geometry: {
-                type: 'Point',
-                coordinates: loc5
-              }
-            }
-            ]
-          }
-        },
-        paint: {
-          'circle-radius': 10,
-          'circle-color': '#5F96A6',
-        }
-      });
-      map.addLayer({
-        id: 'loc6-point',
-        type: 'circle',
-        source: {
-          type: 'geojson',
-          data: {
-            type: 'FeatureCollection',
-            features: [{
-              type: 'Feature',
-              properties: {},
-              geometry: {
-                type: 'Point',
-                coordinates: loc6
-              }
-            }
-            ]
-          }
-        },
-        paint: {
-          'circle-radius': 10,
-          'circle-color': '#5F96A6'
-        }
-      });
+      );
       getRoute(end, map);
     });
   }
@@ -298,7 +234,8 @@ function getRoute(end, map) {
     var tripInstructions = [];
     for (var i = 0; i < steps.length; i++) {
       tripInstructions.push('<br><li>' + steps[i].maneuver.instruction) + '</li>';
-      instructions.innerHTML = '<br><span class="duration">Trip duration: ' + Math.floor(data.duration / 60) + ' min 🚴 </span>' + tripInstructions;
+      instructions.innerHTML = '<br><span class="directions">Directions</span>' + tripInstructions;
+      // instructions.innerHTML = '<br><span class="duration">Trip duration: ' + Math.floor(data.duration / 60) + ' min 🚴 </span>' + tripInstructions;
     }
   };
   req.send();

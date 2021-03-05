@@ -1,12 +1,12 @@
 
 <div class="container-fluid p-0 m-0">
   <div id="map-route"
-      style="width: 100%; height: 780px;"
+      style="width: 100%; height: 100vh;"
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
-  <div class="row justify-content-center">
-  <div id="instructions"></div>
+  <div id="instructions"
+      style="">
   </div>
 </div>
 
@@ -16,7 +16,7 @@
 <%# THE ORDER HAS TO BE [LONGITUDE, LATITUDE] %>
 <%# !!!!!!!!!!!!!! %>
 <!-- <p hidden data-coordinates="[ <%#= StartingLocation.last.longitude %>, <%#= StartingLocation.last.latitude %> ]" id="start"></p> -->
-<p hidden data-coordinates="[13.410959, 52.503631]" id="start"></p>
+<p hidden data-coordinates="[13.410959, 52.503631]" data-description="example" id="start"></p>
 <p hidden data-coordinates="[13.404393, 52.503083]" id="loc1"></p>
 <p hidden data-coordinates="[13.394555, 52.506302]" id="loc3"></p>
 <p hidden data-coordinates="[13.397613, 52.503004]" id="loc2"></p>

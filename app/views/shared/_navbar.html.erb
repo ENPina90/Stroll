@@ -7,8 +7,6 @@
         <i class="fas fa-bars text-warning"></i>
       </a>
         <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown1">
-          <%= link_to "New Stroll", new_walk_starting_location_path(current_user.stroll_setting.walk), class: "dropdown-item"  if user_signed_in?%>
-          <%= link_to "Explore", locations_path, class: "dropdown-item"  if user_signed_in? %>
 
         </div>
     </div>

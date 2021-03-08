@@ -1,20 +1,33 @@
 <div id="home-container">
   <div class="strollbanner">
     <div class="logobig">
-        <%= simple_form_for [@walk, @starting_location] do |f| %>
-        <%= f.input :address, placeholder: "Start my walk from...", label: false %>
-        <label for="customRange3" class="form-label">Walk duration</label>
-          <input name="duration" type="range" class="form-range" min="5" max="20" step="1" id="customRange3" oninput="this.nextElementSibling.value = this.value">
-          <output>12</output>
-        <%= f.submit "Go", class: "btn btn-danger" %>
-       <% end %>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 mb-3">
+            <%= simple_form_for [@walk, @starting_location] do |f| %>
+              <input class="rounded" name="address" type="text" id="starting_location_address" placeholder="Start my stroll from...">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 mb-1 align-self-center">
+            <label for="customRange3" class="form-label">Walk duration</label>
+              <input name="duration" type="range" class="form-range" min="10" max="60" step="5" id="customRange3" oninput="this.nextElementSibling.value = this.value">
+              <output>35</output>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+              <%= f.submit "Go", class: "btn btn-submit btn-secondary" %>
+            <% end %>
+          </div>
+        </div>
+        </div>
     </div>
   </div>
   <ul style="list-style: none;">
-    <li class="mb-3" style="color:#2196F3;"><i class="fas fa-location-arrow" id="current"></i>   Current location</li>
-    <li style="color:#C24F4A;"><i class="fas fa-question"></i>   Randomized Location</li>
+    <li class="mb-3" style="color:#2196F3;"><i class="fas fa-location-arrow" id="current"></i>         Current location</li>
+    <li class="mb-3" style="color:#C24F4A;"><i class="fas fa-question"></i>           Randomized Location</li>
+    <li class="mb-3" style="color:#000000;"><i class="fas fa-home"></i>   Home</li>
+    <li class="mb-3" style="color:#000000;"><i class="fas fa-briefcase"></i>   Work</li>
   </ul>
 </div>
-
-<%# appId: 'plFMJJT509PC',
-apiKey: '8b126ce956636c64b6e74c8b3f3d05e5e', %>

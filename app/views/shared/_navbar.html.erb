@@ -1,4 +1,4 @@
-<div class="navbar navbar-light navbar-expand-sm <%= yield(:navbar_class) %>">
+<div class="navbar navbar-light navbar-expand-sm">
 
   <div>
   <!-- Left icon dropdown -->
@@ -16,7 +16,8 @@
   </div>
 
   <!-- Middle link -->
-  <%= link_to "stroll", root_path, class: "nav-link subtitle nav-item text-warning" %>
+  <%= link_to "stroll", root_path, class: "nav-link subtitle nav-item text-warning " + yield(:navbar_class) %>
+
 
 
   <div>

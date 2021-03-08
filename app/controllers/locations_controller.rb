@@ -2,6 +2,8 @@ class LocationsController < ApplicationController
   def index
     @locations = policy_scope(Location)
 
+    @starred_location = StarredLocation.new
+
     @markers = @locations.geocoded.map do |location|
       {
         lat: location.latitude,

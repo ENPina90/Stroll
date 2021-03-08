@@ -19,6 +19,7 @@
   <%= link_to "stroll", root_path, class: "nav-link subtitle nav-item text-warning " + yield(:navbar_class) %>
 
 
+
   <div>
     <div>
       <% if user_signed_in? %>

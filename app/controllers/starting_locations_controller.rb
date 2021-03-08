@@ -1,4 +1,5 @@
 class StartingLocationsController < ApplicationController
+
   def index
     @starting_locations = policy_scope(StartingLocation)
 

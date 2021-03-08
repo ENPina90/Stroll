@@ -26,9 +26,31 @@
   </div>
   <ul style="list-style: none;">
     <li class="mb-3" style="color:#C24F4A;"><i class="fas fa-question"></i>           Randomized Location</li>
-    <li class="mb-3" style="color:#000000;"><i class="fas fa-home"></i>   Home</li>
-    <li class="mb-3" style="color:#000000;"><i class="fas fa-briefcase"></i>   Work</li>
+    <li style="color:#000000;"><i class="fas fa-home"></i>   Home</li>
+    <% if user_signed_in? && @walk.user.stroll_setting.home_address.present? %>
+      <li class="mb-3" style="color:#A5A2A2;" id="home-address"> <%= @walk.user.stroll_setting.home_address  %></li>
+    <% else %>
+      <li class="mb-3" style="color:#A5A2A2;"><%= link_to "Set home address", edit_stroll_setting_path(current_user.stroll_setting) if user_signed_in? %></li>
+    <% end %>
+    <li style="color:#000000;"><i class="fas fa-briefcase"></i>   Work</li>
+    <% if user_signed_in? && @walk.user.stroll_setting.work_address.present? %>
+      <li class="mb-3" style="color:#A5A2A2;" id="work-address"> <%= @walk.user.stroll_setting.work_address  %></li>
+    <% else %>
+      <li class="mb-3" style="color:#A5A2A2;"><%= link_to "Set work address", edit_stroll_setting_path(current_user.stroll_setting) if user_signed_in? %></li>
+    <% end %>
   </ul>
   <div class="strollfooter">
   </div>
 </div>
+
+<script>
+  const home = document.getElementById("home-address");
+  const inputField = document.getElementById("starting_location_address");
+  home.addEventListener('click', (event) => {
+    inputField.value = event.target.innerText;
+  });
+  const work = document.getElementById("work-address");
+  work.addEventListener('click', (event) => {
+    inputField.value = event.target.innerText;
+  });
+</script>

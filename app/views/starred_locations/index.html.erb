@@ -1,0 +1,3 @@
+<% @starred_locations.each do |f| %>
+  <p><%= Location.find(f.location.id).name %></p>
+<% end %>

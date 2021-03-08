@@ -3,3 +3,8 @@
 <p><%= location.intro %></p>
 <br>
 <p><%= location.info %></p>
+
+<%= simple_form_for([current_user, @starred_location], method: :post) do |f| %>
+<%= f.input :location_id, as: :hidden, input_html: { value: location.id } %>
+<%= f.submit %>
+<% end %>

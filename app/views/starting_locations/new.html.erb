@@ -4,14 +4,17 @@
         <%= simple_form_for [@walk, @starting_location] do |f| %>
         <%= f.input :address, placeholder: "Start my walk from...", label: false %>
         <label for="customRange3" class="form-label">Walk duration</label>
-          <input type="range" class="form-range" min="5" max="20" step="1" id="customRange3" oninput="this.nextElementSibling.value = this.value">
+          <input name="duration" type="range" class="form-range" min="5" max="20" step="1" id="customRange3" oninput="this.nextElementSibling.value = this.value">
           <output>12</output>
-        <%= f.submit "go!", class: "btn btn-danger" %>
+        <%= f.submit "Go", class: "btn btn-danger" %>
        <% end %>
     </div>
   </div>
   <ul style="list-style: none;">
-    <li class="mb-3" style="color:#2196F3;"><i class="fas fa-location-arrow"></i>   Current location</li>
+    <li class="mb-3" style="color:#2196F3;"><i class="fas fa-location-arrow" id="current"></i>   Current location</li>
     <li style="color:#C24F4A;"><i class="fas fa-question"></i>   Randomized Location</li>
   </ul>
 </div>
+
+<%# appId: 'plFMJJT509PC',
+apiKey: '8b126ce956636c64b6e74c8b3f3d05e5e', %>

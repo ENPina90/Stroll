@@ -1,10 +1,18 @@
-<h3 class="header-info-box"><%= location.name %></h3>
-<p>Category <strong><%= location.category.capitalize %></strong> | Cost: <strong><%= location.cost %></strong></p>
-<p><%= location.intro %></p>
-<br>
-<p><%= location.info %></p>
-
-<%= simple_form_for([current_user, @starred_location], method: :post) do |f| %>
-<%= f.input :location_id, as: :hidden, input_html: { value: location.id } %>
-<%= f.submit %>
-<% end %>
+<div class="card-location">
+  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+  <div>
+    <div>
+      <h2><%= location.name %></h2>
+      <p><%= location.category.capitalize %> | <%= location.cost %>€ </p>
+      <p><%= location.info %> </p>
+    </div>
+    <div class="card-location-user">
+      <%= simple_form_for([current_user, @starred_location], method: :post ) do |f| %>
+        <%= f.input :location_id, as: :hidden, input_html: { value: location.id } %>
+          <%= button_tag type: 'submit', class: 'favorite' do %>
+            <i class="fas fa-star text-info"></i>
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

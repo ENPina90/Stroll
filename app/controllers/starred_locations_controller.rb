@@ -9,13 +9,9 @@ class StarredLocationsController < ApplicationController
     authorize @starred_location
     @starred_location.user = current_user
     @starred_location.location = Location.find(params[:starred_location][:location_id])
-    if @starred_location.save
-      flash[:notice] = "Location saved"
-      redirect_to(locations_path)
-    else
-      flash[:alert] = "Location not saved"
-      redirect_to(locations_path)
-    end
+    @starred_location.save
+    flash[:notice] = "Favorite added"
+    redirect_to(locations_path)
   end
 
   def index
@@ -23,5 +19,13 @@ class StarredLocationsController < ApplicationController
     @starred_locations = StarredLocation.where(user: current_user)
     skip_policy_scope
     authorize @starred_locations
+  end
+
+  def destroy
+    @user = current_user
+    @starred_location = StarredLocation.find(params[:id])
+    @starred_location.destroy
+    flash[:alert] = "Favorite removed"
+    redirect_to(locations_path)
   end
 end

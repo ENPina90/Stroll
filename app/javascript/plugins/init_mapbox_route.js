@@ -1,9 +1,6 @@
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
-
-
-
 const buildMap = (mapElement) => {
   var start = JSON.parse(document.getElementById("start").dataset.coordinates)
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
@@ -14,7 +11,6 @@ const buildMap = (mapElement) => {
     zoom: 13
   });
 };
-
 // const addMarkersToMap = (map, markers) => {
 //   markers.forEach((marker) => {
 //     const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
@@ -24,13 +20,11 @@ const buildMap = (mapElement) => {
 //       .addTo(map);
 //   });
 // };
-
 // const fitMapToMarkers = (map, markers) => {
 //   const bounds = new mapboxgl.LngLatBounds();
 //   markers.forEach(marker => bounds.extend([marker.lng, marker.lat]));
 //   map.fitBounds(bounds, { padding: 70, maxZoom: 15 });
 // };
-
 const initMapboxRoute = () => {
   const mapElement = document.getElementById('map-route');
   if (mapElement) {
@@ -45,12 +39,13 @@ const initMapboxRoute = () => {
     map.on('load', function () {
       var start = JSON.parse(document.getElementById("start").dataset.coordinates)
       var end = JSON.parse(document.getElementById("end").dataset.coordinates)
-      var loc1 = JSON.parse(document.getElementById("loc1").dataset.coordinates)
-      var loc2 = JSON.parse(document.getElementById("loc2").dataset.coordinates)
-      var loc3 = JSON.parse(document.getElementById("loc3").dataset.coordinates)
-      var loc4 = JSON.parse(document.getElementById("loc4").dataset.coordinates)
-      var loc5 = JSON.parse(document.getElementById("loc5").dataset.coordinates)
-      var loc6 = JSON.parse(document.getElementById("loc6").dataset.coordinates)
+      var locationsCoordinates = []
+      var locationsDescriptions = []
+      var locations = document.querySelectorAll(".location")
+      locations.forEach(location => {
+        locationsCoordinates.push(JSON.parse(location.dataset.coordinates))
+        locationsDescriptions.push(location.dataset.description)
+      });
       getRoute(end, map);
       map.addControl(
         new mapboxgl.GeolocateControl({
@@ -60,6 +55,25 @@ const initMapboxRoute = () => {
           trackUserLocation: true
         })
       );
+      var emptyArray = [{
+        'type': 'Feature',
+          'properties': {
+            'description':
+              '<strong>📍You are here</strong>'
+            },
+          'geometry': {
+            'type': 'Point',
+              'coordinates': start
+            }}]
+      locationsCoordinates.forEach(function(element, i) {
+        emptyArray.push({'type': 'Feature',
+          'properties': {
+            'description': locationsDescriptions[i]
+              },
+            'geometry': {
+              'type': 'Point',
+              'coordinates': element}})
+          });
       map.loadImage(
         '../assets/right_color.png',
         function (error, image) {
@@ -69,93 +83,14 @@ const initMapboxRoute = () => {
             'type': 'geojson',
             'data': {
               'type': 'FeatureCollection',
-              'features': [
-                {
-                  'type': 'Feature',
-                  'properties': {
-                    'description':
-                      '<strong>Make it Mount Pleasant</strong><p><a href="http://www.mtpleasantdc.com/makeitmtpleasant" target="_blank" title="Opens in a new window">Make it Mount Pleasant</a> is a handmade and vintage market and afternoon of live entertainment and kids activities. 12:00-6:00 p.m.</p>'
-                  },
-                  'geometry': {
-                    'type': 'Point',
-                    'coordinates': loc1
-                  }
-                },
-                {
-                  'type': 'Feature',
-                  'properties': {},
-                  'geometry': {
-                    'type': 'Point',
-                    'coordinates': loc2
-                  }
-                },
-                {
-                  'type': 'Feature',
-                  'properties': {},
-                  'geometry': {
-                    'type': 'Point',
-                    'coordinates': loc3
-                  }
-                },
-                {
-                  'type': 'Feature',
-                  'properties': {
-                    'description':
-                      '<strong>Waldeckpark</strong><p> Das etwa zwei Hektar große Gelände wurde um 1604 als Pestfriedhof für die Petri-Gemeinde angelegt. Nach und nach entstand aus dem Friedhof eine Grünanlage, die ab dem Jahr 1870 teilweise von den Cöllner Bewohnern kostenfrei genutzt werden konnte...<a href=""> read more</a></p>'
-                  },
-                  'geometry': {
-                    'type': 'Point',
-                    'coordinates': loc4
-                  }
-                },
-                {
-                  'type': 'Feature',
-                  'properties': {},
-                  'geometry': {
-                    'type': 'Point',
-                    'coordinates': loc5
-                  }
-                },
-                {
-                  'type': 'Feature',
-                  'properties': {
-                    'description':
-                      '<strong>Design Academy Berlin</strong><p> Encouraging students from all over the world to translate their curiosity and passion into a career. Being committed to working with teachers...<a href=""> read more</a></p>'
-                  },
-                  'geometry': {
-                    'type': 'Point',
-                    'coordinates': loc6
-                  }
-                },
-                {
-                  'type': 'Feature',
-                  'properties': {
-                    'description':
-                      '<strong>📍You are here</strong>'
-                  },
-                  'geometry': {
-                    'type': 'Point',
-                    'coordinates': start
-                  }
-                },
-                // {
-                //   'type': 'Feature',
-                //   'properties': {},
-                //   'geometry': {
-                //     'type': 'Point',
-                //     'coordinates': end
-                //   }
-                // }
-              ]
-            }
-          });
+              'features': emptyArray
+          }});
           map.on('click', 'symbols', function (e) {
             var coordinates = e.features[0].geometry.coordinates.slice();
             var description = e.features[0].properties.description;
             while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
               coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
             }
-
             new mapboxgl.Popup()
               .setLngLat(coordinates)
               .setHTML(description)
@@ -176,16 +111,17 @@ const initMapboxRoute = () => {
     });
   }
 };
-
 function getRoute(end, map) {
   var start = JSON.parse(document.getElementById("start").dataset.coordinates)
-  var loc1 = JSON.parse(document.getElementById("loc1").dataset.coordinates)
-  var loc2 = JSON.parse(document.getElementById("loc2").dataset.coordinates)
-  var loc3 = JSON.parse(document.getElementById("loc3").dataset.coordinates)
-  var loc4 = JSON.parse(document.getElementById("loc4").dataset.coordinates)
-  var loc5 = JSON.parse(document.getElementById("loc5").dataset.coordinates)
-  var loc6 = JSON.parse(document.getElementById("loc6").dataset.coordinates)
-  var url = 'https://api.mapbox.com/directions/v5/mapbox/walking/' + start[0] + ',' + start[1] + ';' + loc1[0] + ',' + loc1[1] + ';' + loc2[0] + ',' + loc2[1] + ';' + loc3[0] + ',' + loc3[1] + ';' + loc4[0] + ',' + loc4[1] + ';' + loc5[0] + ',' + loc5[1] + ';' + loc6[0] + ',' + loc6[1] + ';' + end[0] + ',' + end[1] + '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
+  var locationsCoordinates = []
+  var locations = document.querySelectorAll(".location")
+  locations.forEach(location => {
+    locationsCoordinates.push(JSON.parse(location.dataset.coordinates))
+  })
+  var string = ''
+  locationsCoordinates.forEach(i => string += ';' + i[0] + ',' +i[1] )
+  var url = 'https://api.mapbox.com/directions/v5/mapbox/walking/' + start[0] + ',' + start[1] +  string + '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
+  console.log(url)
   var req = new XMLHttpRequest();
   req.open('GET', url, true);
   req.onload = function () {
@@ -230,7 +166,6 @@ function getRoute(end, map) {
     }
     var instructions = document.getElementById('instructions');
     var steps = data.legs[0].steps;
-
     var tripInstructions = [];
     for (var i = 0; i < steps.length; i++) {
       tripInstructions.push('<br><li>' + steps[i].maneuver.instruction) + '</li>';
@@ -240,7 +175,4 @@ function getRoute(end, map) {
   };
   req.send();
 }
-
-
 export { initMapboxRoute };
-

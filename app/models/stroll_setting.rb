@@ -7,9 +7,9 @@ class StrollSetting < ApplicationRecord
   # validates :cost, presence: true
   # validates :newness, presence: true
 
-  after_create :create_walk
-  def create_walk
-    Walk.create(user: self.user,
-      stroll_setting: self)
-  end
+  # after_create :create_walk
+  # def create_walk
+  #   Walk.create(user: self.user,
+  #     stroll_setting: self)
+  # end
 end

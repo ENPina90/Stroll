@@ -12,17 +12,17 @@
 
 
 
+
+
+
 <%# !!!!!!!!!!!!!! %>
 <%# THE ORDER HAS TO BE [LONGITUDE, LATITUDE] %>
 <%# !!!!!!!!!!!!!! %>
-<!-- <p hidden data-coordinates="[ <%#= StartingLocation.last.longitude %>, <%#= StartingLocation.last.latitude %> ]" id="start"></p> -->
-<p hidden data-coordinates="[13.410959, 52.503631]" data-description="example" id="start"></p>
-<p hidden data-coordinates="[13.404393, 52.503083]" id="loc1"></p>
-<p hidden data-coordinates="[13.394555, 52.506302]" id="loc3"></p>
-<p hidden data-coordinates="[13.397613, 52.503004]" id="loc2"></p>
-<p hidden data-coordinates="[13.404007, 52.506453]" id="loc4"></p>
-<p hidden data-coordinates="[13.409543, 52.506662]" id="loc5"></p>
-<p hidden data-coordinates="[13.414521, 52.505747]" id="loc6"></p>
-<p hidden data-coordinates="[13.410959, 52.503631]" id="end"></p>
+<p hidden data-coordinates="[ <%= @walk.starting_location.longitude %>, <%= @walk.starting_location.latitude %> ]" id="start"></p>
 
+<% @locations.each do |location| %>
+  <p hidden data-coordinates="[ <%= location.longitude %>, <%= location.latitude %> ]",  class="location"> </p>
+<% end  %>
+
+<p hidden data-coordinates="[ <%= @walk.starting_location.longitude %>, <%= @walk.starting_location.latitude %> ]" id="end"></p>
 

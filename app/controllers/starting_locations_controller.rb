@@ -1,7 +1,7 @@
 class StartingLocationsController < ApplicationController
   def new
     @starting_location = StartingLocation.new
-    @walk = Walk.find(params[:walk_id])
+    @walk = Walk.create(stroll_setting: current_user.stroll_setting, user: current_user)
     authorize @starting_location
   end
 

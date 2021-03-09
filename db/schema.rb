@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_162509) do
     t.string "category"
     t.integer "significance"
     t.integer "cost"
-    t.boolean "newness", default: false
+    t.boolean "newness"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

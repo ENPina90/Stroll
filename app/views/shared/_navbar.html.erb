@@ -19,10 +19,8 @@
       <!-- Middle link -->
       <%= link_to "stroll", root_path, class: "nav-link subtitle nav-item text-warning " + yield(:transparent_stroll) %>
 
-
       <div>
         <div>
-        
         <!-- Right icon dropdown -->
         <div class="nav-item dropdown">
           <a
@@ -41,6 +39,7 @@
             <hr class="dropdown-divider" />
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
+
         </div>
     <% else %>
       <div class="nav-item">

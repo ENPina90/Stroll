@@ -35,8 +35,10 @@ document.addEventListener('turbolinks:load', () => {
 
 import { initMapbox } from '../plugins/init_mapbox';
 import { initMapboxRoute } from '../plugins/init_mapbox_route';
+import { initAutocomplete } from '../plugins/init_autocomplete';
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
   initMapboxRoute();
+  initAutocomplete();
 })

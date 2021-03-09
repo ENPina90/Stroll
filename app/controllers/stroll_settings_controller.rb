@@ -38,7 +38,7 @@ class StrollSettingsController < ApplicationController
   private
 
   def stroll_setting_params
-    params.require(:stroll_setting).permit(:category, :significance, :cost, :newness)
+    params.require(:stroll_setting).permit(:category, :significance, :cost, :newness, :home_address, :work_address)
   end
 
   def set_stroll_setting

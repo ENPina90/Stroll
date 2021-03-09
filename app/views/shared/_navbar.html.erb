@@ -19,10 +19,8 @@
       <!-- Middle link -->
       <%= link_to "stroll", root_path, class: "nav-link subtitle nav-item text-warning " + yield(:transparent_stroll) %>
 
-
       <div>
         <div>
-        
         <!-- Right icon dropdown -->
         <div class="nav-item dropdown">
           <a
@@ -41,6 +39,26 @@
             <hr class="dropdown-divider" />
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
+          
+  <div>
+    <div>
+      <% if user_signed_in? %>
+      <!-- Right icon dropdown -->
+      <div class="nav-item dropdown">
+        <a
+          class="nav-link"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-expanded="false">
+          <i class="fas fa-cog text-warning"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <%= link_to "Interests", edit_stroll_setting_path(current_user), class: "dropdown-item" %>
+          <%= link_to "Favorites", user_starred_locations_path(current_user), class: "dropdown-item" %>
+          <hr class="dropdown-divider" />
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
         </div>
     <% else %>
       <div class="nav-item">

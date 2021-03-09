@@ -1,12 +1,11 @@
 .mapboxgl-popup {
-  max-width: 200px;
+  max-width: 240px;
 }
 
 .mapboxgl-popup-content {
-  text-align: center;
-  font-family: 'Helvetica', sans-serif;
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 4px 12px;
+  padding: 0px !important;
 }
 
 .header-info-box {
@@ -20,7 +19,7 @@
   padding: 0px 12px;
   background-color: rgba(255, 255, 255, 0.9);
   overflow-y: scroll;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Fira Sans', Helvetica, sans-serif;
   font-size: 0.8em;
   line-height: 2em;
   max-height: 35vh;
@@ -31,4 +30,57 @@
 
 #instructions .directions {
   font-size: 2em;
+}
+
+
+.card-location {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.card-padding {
+  padding: 4px;
+}
+
+.card-location > img {
+  height: 100px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-location h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-location p {
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+}
+
+.card-location .card-location-infos {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+
+.card-location-infos .card-location-user {
+  position: relative;
+  right: 0px;
+  top: 0px;
+  width: 0px;
+}
+
+.favorite {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
 }

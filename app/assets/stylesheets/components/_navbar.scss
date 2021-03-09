@@ -3,10 +3,10 @@
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  background-color: transparent;
+  background-color: $primary;
   height: 40px;
   padding: 0px;
-  position: absolute;
+  z-index: 100;
 }
 
 .navbar-dark {
@@ -17,16 +17,14 @@
   flex-grow: 0;
 }
 
-.navbar-home {
-  position: absolute;
-  width: 100%;
-  box-shadow: none;
-}
-
-.transparent-text {
+.transparent-stroll {
   color: transparent !important;
 }
 
+.transparent-navbar {
+  position: absolute;
+  background-color: transparent !important;
+}
 
 .title {
   font-family: 'Noto Serif 700', serif;

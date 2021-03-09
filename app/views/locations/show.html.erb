@@ -1,0 +1,19 @@
+<div class="strollbanner" style="background-image: url(https://www.voucherwonderland.com/reisemagazin/wp-content/uploads/2017/03/Berlin-Sehensw%C3%BCrdigkeiten-1.jpeg);">
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+      <h1 class="title" style="font-size: 35px"><%= @location.name %></h1>
+      <% if @starred_locations.include?(@location.id) %>
+        <i class="far fa-star" style="position: relative; top: 29px; right: -4vw;"></i>
+      <% else %>
+        <i class="fas fa-star" style="position: relative; top: 29px; right: -4vw;"></i>
+      <% end %>
+  </div>
+  <div class="row">
+    <div class="row justify-content-center">
+      <p>Category <strong><%= @location.category.capitalize %></strong> | Cost: <strong><%= @location.cost %></strong></p>
+      <p><%= @location.info %></p>
+      <p>Notes:</p>
+    </div>
+  </div>
+</div>

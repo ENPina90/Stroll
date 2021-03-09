@@ -1,0 +1,5 @@
+<h3 class="header-info-box"><%= Location.find(starred_location.location_id).name %></h3>
+<p>Category <strong><%= Location.find(starred_location.location_id).category.capitalize %></strong> | Cost: <strong><%= Location.find(starred_location.location_id).cost %></strong></p>
+<p><%= Location.find(starred_location.location_id).intro %></p>
+<br>
+<p><%= Location.find(starred_location.location_id).info %></p>

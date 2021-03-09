@@ -38,6 +38,7 @@
     <% else %>
       <li class="mb-3" style="color:#A5A2A2;"><%= link_to "Set work address", edit_stroll_setting_path(current_user.stroll_setting) if user_signed_in? %></li>
     <% end %>
+    <li style="color:#000000;"><i class="fas fa-sliders-h"></i><%= link_to "    Customize stroll", edit_stroll_setting_path(current_user.stroll_setting) if user_signed_in? %></li>
   </ul>
   <div class="strollfooter">
   </div>

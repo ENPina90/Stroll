@@ -1,52 +1,51 @@
-<div class="navbar navbar-light navbar-expand-sm">
+<div class="navbar navbar-light navbar-expand-sm <%= yield(:transparent_navbar) %>">
 
   <div>
-  <!-- Left icon dropdown -->
-    <div class="nav-item dropdown">
-      <a class="nav-link" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-expanded="false">
-        <i class="fas fa-bars text-warning"></i>
-      </a>
-        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown1">
-          <%= link_to "Home", root_path, class: "dropdown-item"  if user_signed_in?%>
-          <%= link_to "Explore", locations_path, class: "dropdown-item"  if user_signed_in? %>
-          <%= link_to "Saved Strolls", "#", class: "dropdown-item" if user_signed_in? %>
-          <%= link_to "Shared Strolls", "#", class: "dropdown-item"  if user_signed_in? %>
-        </div>
-    </div>
-  </div>
-
-  <!-- Middle link -->
-  <%= link_to "stroll", root_path, class: "nav-link subtitle nav-item text-warning " + yield(:navbar_class) %>
-
-
-
-  <div>
-    <div>
-      <% if user_signed_in? %>
-      <!-- Right icon dropdown -->
-      <div class="nav-item dropdown">
-        <a
-          class="nav-link"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-expanded="false">
-          <i class="fas fa-cog text-warning"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <%= link_to "Profile", "#", class: "dropdown-item" %>
-          <%= link_to "Interests", "#", class: "dropdown-item" %>
-          <%= link_to "Shared", "#", class: "dropdown-item" %>
-          <hr class="dropdown-divider" />
-          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+    <% if user_signed_in? %>
+      <!-- Left icon dropdown -->
+        <div class="nav-item dropdown">
+          <a class="nav-link" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-bars text-warning"></i>
+          </a>
+            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown1">
+              <%= link_to "Home", root_path, class: "dropdown-item"  if user_signed_in?%>
+              <%= link_to "Explore", locations_path, class: "dropdown-item"  if user_signed_in? %>
+              <%= link_to "Saved Strolls", "#", class: "dropdown-item" if user_signed_in? %>
+              <%= link_to "Shared Strolls", "#", class: "dropdown-item"  if user_signed_in? %>
+            </div>
         </div>
       </div>
-      <% else %>
-        <div class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link text-warning subtitle" %>
+
+      <!-- Middle link -->
+      <%= link_to "stroll", root_path, class: "nav-link subtitle nav-item text-warning " + yield(:transparent_stroll) %>
+
+      <div>
+        <div>
+        <!-- Right icon dropdown -->
+        <div class="nav-item dropdown">
+          <a
+            class="nav-link"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-expanded="false">
+            <i class="fas fa-cog text-warning"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <%= link_to "Profile", "#", class: "dropdown-item" %>
+            <%= link_to "Interests", "#", class: "dropdown-item" %>
+            <%= link_to "Shared", "#", class: "dropdown-item" %>
+            <hr class="dropdown-divider" />
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          </div>
+
         </div>
-      <% end %>
+    <% else %>
+      <div class="nav-item">
+        <%= link_to "Login", new_user_session_path, class: "nav-link text-warning subtitle btn btn-info" %>
+      </div>
+    <% end %>
     </div>
   </div>
 </div>

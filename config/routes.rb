@@ -9,8 +9,13 @@ Rails.application.routes.draw do
 
   resources :stroll_settings, only: [ :edit, :create, :update ]
 
-  resources :locations, only: [ :new, :create, :show, :index ]
+
+  resources :locations, only: [ :new, :create, :show, :index ] do
+    resources :notes, only: [:new, :create]
+  end
+
   resources :starting_locations, only: [ :new ]
+
   resources :walks do
     resources :starting_locations, only: [ :index, :show, :create ]
   end

@@ -1,43 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The page you were looking for doesn't exist (404)</title>
+  <title>You reached the end of the road (404)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
+  .stroll-error-page {
+    background-color: #A0CFCB;
+    color: #5F96A6;
     text-align: center;
-    font-family: arial, sans-serif;
+    font-family: "Fira Sans", Helvetica, sans-serif;
     margin: 0;
+    height: 100vh;
   }
 
-  .rails-default-error-page div.dialog {
+  .stroll-error-page img {
     width: 95%;
     max-width: 33em;
     margin: 4em auto 0;
   }
 
-  .rails-default-error-page div.dialog > div {
+  .stroll-error-page div.dialog {
+    width: 95%;
+    max-width: 33em;
+    margin: 4em auto 0;
+  }
+
+  .stroll-error-page div.dialog > div {
     border: 1px solid #CCC;
     border-right-color: #999;
     border-left-color: #999;
     border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
+    border-radius: 8px;
     background-color: white;
     padding: 7px 12% 0;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
 
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
+  .stroll-error-page h1 {
+    font-size: 110%;
+    color: #2196F3;
     line-height: 1.5em;
   }
 
-  .rails-default-error-page div.dialog > p {
+  .stroll-error-page div.dialog > p {
     margin: 0 0 1em;
     padding: 1em;
     background-color: #F7F7F7;
@@ -54,14 +59,14 @@
   </style>
 </head>
 
-<body class="rails-default-error-page">
+<body class="stroll-error-page">
   <!-- This file lives in public/404.html -->
   <div class="dialog">
+    <img src="https://stroll-enpina90.herokuapp.com/assets/stroll_logo-dc060ed87275779ba1c2dc8d0587c63f41b81b878d5eda28e0a46e73d0f624c6.png" alt="logobig">
     <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
+      <h1>Your exploring took you somewhere unkown - even to us!</h1>
+      <p>Please <a href="https://stroll-enpina90.herokuapp.com/" class="btn btn-info">click here</a> and Stroll will take you back home in a few seconds</p>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
   </div>
 </body>
 </html>

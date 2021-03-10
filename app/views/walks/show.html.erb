@@ -14,14 +14,17 @@
 
 
 
-
 <%# !!!!!!!!!!!!!! %>
 <%# THE ORDER HAS TO BE [LONGITUDE, LATITUDE] %>
 <%# !!!!!!!!!!!!!! %>
 <p hidden data-coordinates="[ <%= @walk.starting_location.longitude %>, <%= @walk.starting_location.latitude %> ]" id="start"></p>
 
 <% @locations.each do |location| %>
-  <p hidden data-coordinates="[ <%= location.longitude %>, <%= location.latitude %> ]",  class="location"> </p>
+  <% location_name = location.respond_to?(:name) ? location.name : location.address %>
+  <% location_intro = location.respond_to?(:intro) ? location.intro : location.address%>
+  <% location_info = location.respond_to?(:info) ? location.info : location.address%>
+
+  <p data-coordinates="[ <%= location.longitude %>, <%= location.latitude %> ]" data-description="<%= location_name %> <%= location_intro %> <%= location_info %>",  class="location"> </p>
 <% end  %>
 
 <p hidden data-coordinates="[ <%= @walk.starting_location.longitude %>, <%= @walk.starting_location.latitude %> ]" id="end"></p>

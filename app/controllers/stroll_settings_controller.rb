@@ -13,6 +13,7 @@ class StrollSettingsController < ApplicationController
 
   def edit
     authorize @stroll_setting
+    @stroll_setting = StrollSetting.find(params[:id])
   end
 
   def create
@@ -28,6 +29,7 @@ class StrollSettingsController < ApplicationController
 
   def update
     authorize @stroll_setting
+    # raise
     if @stroll_setting.update!(stroll_setting_params)
       redirect_to edit_stroll_setting_path(@stroll_setting), notice: 'Settings were successfully updated'
     else

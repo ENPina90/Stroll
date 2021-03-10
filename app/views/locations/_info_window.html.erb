@@ -11,7 +11,11 @@
       <%= simple_form_for([current_user, @starred_location], method: :post ) do |f| %>
         <%= f.input :location_id, as: :hidden, input_html: { value: location.id } %>
           <%= button_tag type: 'submit', class: 'favorite' do %>
-            <i class="fas fa-star text-warning"></i>
+            <% if @starred_locations.include?(location.id) %>
+              <i class="fas fa-star" style="color: gold;"></i>
+            <% else %>
+              <i class="far fa-star" style=""></i>
+            <% end %>
           <% end %>
       <% end %>
     </div>

@@ -42,6 +42,13 @@ locations = list['pois']
 # puts site['facts']
 # puts site['teasertext']
 
+categories = ["Attractions", "Architecture", "Bars", "Cafes", "Galleries", "History", "Shops", "Sculpture", "Street Art"]
+
+categories.each {|category| Category.create!(name: category) }
+
+
+
+
 locations.each do |location|
   Location.create!(
     name: location['headline'],
@@ -55,10 +62,10 @@ locations.each do |location|
     photo_url: location['gallery'].first['sourceUrl'],
     facts: facts = location['facts'],
     sources: "https://www.visitberlin.de",
-    cost: 0,
+    cost: false,
     significance: 1,
     lang: "en",
-    category: "history"
+    category: "History"
   )
   puts location['headline']
   puts Location.last
@@ -80,7 +87,7 @@ CSV.foreach(filepath, csv_options) do |row|
     date: "Built: #{row['date']}",
     content: row['Description'],
     sources: "Berlin: The Architecture Guide by  Philipp Meuser",
-    cost: 0,
+    cost: false,
     significance: 2,
     lang: "en",
     category: "Architecture"

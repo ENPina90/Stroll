@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_08_162509) do
+ActiveRecord::Schema.define(version: 2021_03_10_134758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "ending_locations", force: :cascade do |t|
     t.bigint "walk_id", null: false
@@ -87,10 +93,19 @@ ActiveRecord::Schema.define(version: 2021_03_08_162509) do
     t.index ["walk_id"], name: "index_stroll_locations_on_walk_id"
   end
 
+  create_table "stroll_setting_categories", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.bigint "stroll_setting_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_stroll_setting_categories_on_category_id"
+    t.index ["stroll_setting_id"], name: "index_stroll_setting_categories_on_stroll_setting_id"
+  end
+
   create_table "stroll_settings", force: :cascade do |t|
     t.string "category"
     t.integer "significance"
-    t.integer "cost"
+    t.boolean "cost"
     t.boolean "newness", default: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -133,6 +148,8 @@ ActiveRecord::Schema.define(version: 2021_03_08_162509) do
   add_foreign_key "starting_locations", "walks"
   add_foreign_key "stroll_locations", "locations"
   add_foreign_key "stroll_locations", "walks"
+  add_foreign_key "stroll_setting_categories", "categories"
+  add_foreign_key "stroll_setting_categories", "stroll_settings"
   add_foreign_key "stroll_settings", "users"
   add_foreign_key "walks", "stroll_settings"
   add_foreign_key "walks", "users"

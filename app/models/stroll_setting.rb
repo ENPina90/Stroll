@@ -1,6 +1,8 @@
 class StrollSetting < ApplicationRecord
   belongs_to :user
   has_one :walk
+  has_many :stroll_setting_categories
+  has_many :categories, through: :stroll_setting_categories
 
   # validates :category, presence: true
   # validates :significance, presence: true

@@ -14,11 +14,12 @@ class WalksController < ApplicationController
   end
 
   def generate
+    km = @walk.starting_location.duration
     total = 0
     points = []
     start = @walk.starting_location
     points.push(start)
-    distance = 2.5
+    distance = 5
     nearby = Location.geocoded.near(start, distance, units: :km)
     oldloc = nearby.order("distance").last(5).sample
     newloc = start

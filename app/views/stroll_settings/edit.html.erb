@@ -9,8 +9,12 @@
   </div>
     <div class="container">
   <%= simple_form_for @stroll_setting do |f| %>
-    <%= simple_form_for @stroll_setting  do |f| %>
-    <%= f.input :significance, collection: (1..4), as: :range%>
+    <h2>Significance</h2>
+    <div class="col-12 mb-1 align-self-center">
+      <label for="customRange3" class="form-label"></label>
+        <input name="significance" type="range" class="form-range" min="1" max="3" step="1" id="customRange3" oninput="this.nextElementSibling.value = this.value">
+      <output></output>
+    </div>
     <%= f.input :cost, as: :boolean %>
     <%= f.input :newness,  as: :boolean %>
     <%= f.input :category, collection: Category.all, as: :check_boxes, multiple: true %>
@@ -29,7 +33,6 @@
   </div>
   <% end %>
 </div>
-<% end %>
 <script>
    $(function(){
             $('[data-toggle="tooltip"]').tooltip();

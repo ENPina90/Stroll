@@ -14,8 +14,7 @@ class User < ApplicationRecord
   after_create :create_settings
   def create_settings
     StrollSetting.create(user: self,
-      category: %(Attractions Architecture Bars Cafes Galleries History Shops Sculpture Street Art),
-      significance: 1, cost: 1, newness: true)
+      category: ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
+      significance: 3, cost: true, newness: true)
   end
-
 end

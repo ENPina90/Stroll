@@ -5,6 +5,7 @@
       <h2><%= location.name %></h2>
       <p><%= location.category.capitalize %> | <%= location.cost %>€ </p>
       <p><%= location.address %> </p>
+      <p><%= link_to  "See more", location_path(location) %></p>
     </div>
     <div class="card-location-user">
       <%= simple_form_for([current_user, @starred_location], method: :post ) do |f| %>

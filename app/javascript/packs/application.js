@@ -28,11 +28,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
-document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
-});
-
+import { start } from '../plugins/starting_location'
 import { initMapbox } from '../plugins/init_mapbox';
 import { initMapboxRoute } from '../plugins/init_mapbox_route';
 import { initAutocomplete } from '../plugins/init_autocomplete';
@@ -41,4 +37,5 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
   initMapboxRoute();
   initAutocomplete();
+  start();
 })

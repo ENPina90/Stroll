@@ -3,7 +3,14 @@ class WalksController < ApplicationController
 
   def show
     authorize @walk
-    @locations = generate
+    if @walk.stroll_locations.empty?
+      @locations = generate
+      @locations.each do |location|
+        StrollLocation.create(location: location, walk: @walk) unless location.class == StartingLocation
+      end
+    else
+      @locations = [@walk.starting_location] + @walk.locations + [@walk.starting_location]
+    end
   end
 
   def generate
@@ -24,7 +31,7 @@ class WalksController < ApplicationController
       end
       enroute = Location.within_bounding_box(cord)
       puts "before .near"
-      newloc = enroute.near(newloc).order("distance").reject { | loc | loc == newloc }.first(3).sample
+      newloc = enroute.near(newloc).order("distance").reject { | loc | loc.to_coordinates == newloc.to_coordinates }.first(3).sample
       puts newloc.class == Location
       puts "after .near"
       newdist = points.last.distance_to(newloc)
@@ -74,6 +81,7 @@ class WalksController < ApplicationController
     #   total += oldloc.distance_to(newloc)
     #   puts oldloc.distance_to(newloc)
     # en
+    ## is it neccassary to push the starting location at the end
     points.push(@walk.starting_location)
     points
   end

@@ -14,13 +14,21 @@
 require 'json'
 require 'open-uri'
 
-url = "https://vberlindev.blob.core.windows.net/data/content_offline_stage_en.json"
+puts 'Cleaning...'
 
-locations_serialized = URI.open(url).read
+StartingLocation.destroy_all
+StarredLocation.destroy_all
+Walk.destroy_all
+Location.destroy_all
+Category.destroy_all
 
-list = JSON.parse(locations_serialized)
+# url = "https://vberlindev.blob.core.windows.net/data/content_offline_stage_en.json"
 
-locations = list['pois']
+# locations_serialized = URI.open(url).read
+
+# list = JSON.parse(locations_serialized)
+
+# locations = list['pois']
 
 # name = site['headline']
 # address = site['address']
@@ -42,56 +50,59 @@ locations = list['pois']
 # puts site['facts']
 # puts site['teasertext']
 
-categories = ["Attractions", "Architecture", "Bars", "Cafes", "Galleries", "History", "Shops", "Sculpture", "Street Art"]
+categories = ["Attractions", "Architecture", "Bar", "Cafe", "Gallery", "Hidden Places", "History", "Memorial", "Nieghborhood" "Park", "Restaurant", "Shop", "Sculpture", "Street Art", "View"]
 
 categories.each {|category| Category.create!(name: category) }
 
 
 
 
-locations.each do |location|
-  Location.create!(
-    name: location['headline'],
-    address: location['address'],
-    latitude: location['coordinates']['latitude'],
-    longitude: location['coordinates']['longitude'],
-    info: location['endText'],
-    intro: location['teasertext'],
-    content: location['mainText'],
-    photo_caption: location['gallery'].first['title'],
-    photo_url: location['gallery'].first['sourceUrl'],
-    facts: facts = location['facts'],
-    sources: "https://www.visitberlin.de",
-    cost: false,
-    significance: 1,
-    lang: "en",
-    category: "History"
-  )
-  puts location['headline']
-  puts Location.last
-end
+# locations.each do |location|
+#   Location.create!(
+#     name: location['headline'],
+#     address: location['address'],
+#     latitude: location['coordinates']['latitude'],
+#     longitude: location['coordinates']['longitude'],
+#     info: location['endText'],
+#     intro: location['teasertext'],
+#     content: location['mainText'],
+#     photo_caption: location['gallery'].first['title'],
+#     photo_url: location['gallery'].first['sourceUrl'],
+#     facts: facts = location['facts'],
+#     sources: "https://www.visitberlin.de",
+#     cost: false,
+#     significance: 1,
+#     lang: "en",
+#     category: "History"
+#   )
+#   puts location['headline']
+#   puts Location.last
+# end
 
 require 'csv'
 
 csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
-filepath    = 'db/StrollArchitecture.csv'
+filepath    = 'db/Seednew.csv'
 
 CSV.foreach(filepath, csv_options) do |row|
   Location.create!(
-    name: row['name'],
-    address: row['address'],
-    latitude: row['latitude'],
-    longitude: row['longitude'],
-    keywords: row['era'],
-    creator: "Architect: #{row['architect']}",
-    date: "Built: #{row['date']}",
+    name: row['Name'],
+    address: row['Address'],
+    latitude: row['Latitude'],
+    longitude: row['Longitude'],
+    keywords: row['Keywords'],
+    creator: row['Creator'],
+    date: row['Date'],
+    intro: row['Intro'],
     content: row['Description'],
-    sources: "Berlin: The Architecture Guide by  Philipp Meuser",
-    cost: false,
-    significance: 2,
-    lang: "en",
-    category: "Architecture"
+    sources: row['Sources'],
+    cost: row['cost'],
+    significance: row['Significance'],
+    lang: 'en',
+    category: ['Category'],
+    photo_url: ['Photo_url'],
   )
-  puts row['name']
-  puts Location.last
+  puts "You created Loaction # #{Location.count}. #{Location.last.name}, good job!"
 end
+
+"All done thanks for playing"

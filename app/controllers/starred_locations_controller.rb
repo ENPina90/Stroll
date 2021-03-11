@@ -20,7 +20,6 @@ class StarredLocationsController < ApplicationController
   end
 
   def create
-    # raise
     @starred_location = StarredLocation.new
     authorize @starred_location
     @starred_location.user = current_user
@@ -33,6 +32,7 @@ class StarredLocationsController < ApplicationController
   def destroy
     @user = current_user
     @starred_location = StarredLocation.find(params[:id])
+    authorize @starred_location
     @starred_location.destroy
     flash[:alert] = "Favorite removed"
     redirect_to(locations_path)

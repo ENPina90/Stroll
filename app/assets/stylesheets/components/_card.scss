@@ -20,6 +20,104 @@
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.03);
 }
 
+
+// first effect
+
+.papers, .papers:before, .papers:after  {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.1), 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.papers  {
+  position: relative;
+  width: 100%;
+  padding: 2em;
+  margin: 16px auto;
+}
+
+.papers:before, .papers:after  {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: rotateZ(2.5deg);
+  -o-transform: rotate(2.5deg);
+  transform: rotateZ(2.5deg);
+  z-index: -1;
+}
+
+.papers:after  {
+  -webkit-transform: rotateZ(-2.5deg);
+  -o-transform: rotate(-2.5deg);
+  transform: rotateZ(-2.5deg);
+}
+
+.papers h2  {
+  font-size: 1.8em;
+  font-weight: normal;
+  text-align: center;
+  padding: 0.2em 0;
+  margin: 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 2px solid #ddd;
+}
+
+.papers p  {
+  text-align: left;
+  margin: 1,5em 0;
+}
+
+// second effect
+
+.box {
+  position: relative;
+  margin: 16px auto;
+  width: 100%;
+  // height: 350px;
+  background: #fff;
+  padding: 23px;
+  border-radius: 2px;
+}
+
+.box::before,
+.box::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  width: 40%;
+  height: 10px;
+  box-shadow: 0 5px 14px rgba(0,0,0,.7);
+  z-index: -1;
+  transition: all .3s ease-in-out;
+}
+
+.box::before {
+  left: 15px;
+  transform: skew(-5deg) rotate(-5deg);
+}
+
+.box::after {
+  right: 15px;
+  transform: skew(5deg) rotate(5deg);
+}
+
+.box:hover::before,
+.box:hover::after {
+  box-shadow: 0 2px 14px rgba(0,0,0,.4);
+}
+
+.box:hover::before {
+  left: 5px;
+}
+
+.box:hover::after {
+  right: 5px;
+}
+
+
 .card-list {
   width: 100%;
   height: 100vh;
@@ -95,3 +193,4 @@
   align-items: flex-end;
   position: relative;
 }
+

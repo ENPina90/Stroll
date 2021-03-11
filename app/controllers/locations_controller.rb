@@ -16,6 +16,8 @@ class LocationsController < ApplicationController
   def show
     @location = Location.find(params[:id])
     authorize @location
+    @this_starred_location = StarredLocation.where(location_id: @location.id, user_id: current_user.id).first
+    @starred_location = StarredLocation.new
     @starred_locations = StarredLocation.where(user: current_user).map(&:location_id)
     @notes = Note.where(location_id: params[:id])
     @note = Note.new

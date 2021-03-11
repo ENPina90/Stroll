@@ -1,22 +1,46 @@
-<div class="banner" style="background-image: url(https://www.voucherwonderland.com/reisemagazin/wp-content/uploads/2017/03/Berlin-Sehensw%C3%BCrdigkeiten-1.jpeg);">
+<div class="banner" style="background-image: url(<%= @location.photo_url.present? ? @location.photo_url : "https://www.voucherwonderland.com/reisemagazin/wp-content/uploads/2017/03/Berlin-Sehensw%C3%BCrdigkeiten-1.jpeg" %>);">
+  <div>
+    <% if @starred_locations.include?(@location.id) %>
+        <%= simple_form_for([current_user, @this_starred_location], method: :delete ) do |f| %>
+          <%= f.input :location_id, as: :hidden, input_html: { value: @location.id } %>
+            <%= button_tag type: 'submit', class: 'favorite' do %>
+                <i class="fas fa-star fa-lg" style="position: absolute; left: 10px; top: 50px; color: gold;"></i>
+            <% end %>
+        <% end %>
+      <% else %>
+        <%= simple_form_for([current_user, @starred_location], method: :post ) do |f| %>
+          <%= f.input :location_id, as: :hidden, input_html: { value: @location.id } %>
+            <%= button_tag type: 'submit', class: 'favorite' do %>
+                <i class="far fa-star fa-lg" style="position: absolute; left: 10px; top: 50px;"></i>
+            <% end %>
+        <% end %>
+      <% end %>
+  </div>
 </div>
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 m-2">
-      <h1 class="title" style="font-size: 35px; line-height: 40px;"><%= @location.name %></h1>
+    <div class="row justify-content-center">
+      <div class="col-12 m-2">
+        <h1 class="title" style="font-size: 35px; line-height: 40px;"><%= @location.name %></h1>
+      </div>
     </div>
-    <div class="m-1">
-      <% if @starred_locations.include?(@location.id) %>
-        <i class="fas fa-star fa-lg" style="position: relative; bottom: 8px; color: gold;"></i>
-      <% else %>
-        <i class="far fa-star fa-lg" style="position: relative; bottom: 8px;"></i>
-      <% end %>
+    <div class="row justify-content-center w-90 pr-2 pl-2">
+      <p>Category <strong><%= @location.category.capitalize %></strong> | Cost: <strong><%= @location.cost %> €</strong></p>
+      <p style="margin: auto;"><%= @location.address %></p>
     </div>
-  </div>
-  <div class="row justify-content-center w-90 pr-2 pl-2">
-    <p>Category <strong><%= @location.category.capitalize %></strong> | Cost: <strong><%= @location.cost %> €</strong></p>
-    <p style="margin: auto;"><%= @location.address %></p>
-  </div>
+    <div class="row justify-content-center w-90 pr-3 pl-3 mt-3">
+      <p><strong><%= @location.intro %></strong></p>
+    </div>
+    <% if @location.content.present? %>
+      <div class="row justify-content-left w-90 pr-3 pl-3 mt-3">
+        <p><%= @location.content %></p>
+      </div>
+    <% end %>
+    <% if @location.info.present? %>
+      <div class="row justify-content-left w-90 pr-3 pl-3 mt-2">
+        <p><%= @location.info %></p>
+      </div>
+    <% end %>
+
   <hr>
 
   <div class="row w-90 pr-3 pl-3 align-items-center">
@@ -29,15 +53,18 @@
       <%= f.input :content %>
       <%= f.button :submit, class: "btn btn-primary", style: "color: white;" %>
     <% end %>
+    <br>
     </div>
 
-    <div class="mt-3">
       <% @notes.each do |note| %>
-        <p><%= note.content %></p>
+        <div class="box">
+          <h5><%= note.content %></h5>
+          <p style="font-style: italic; color: #a09f9b; margin-bottom: 0;">- <%= User.find(note.user_id).user_name %>, <%= note.created_at.to_s[0..10] %></p>
+        </div>
       <% end %>
-    </div>
   </div>
 </div>
+
 
 <script>
   function ShowAndHide() {

@@ -1,15 +1,20 @@
 <div class="banner" style="background-image: url(https://www.voucherwonderland.com/reisemagazin/wp-content/uploads/2017/03/Berlin-Sehensw%C3%BCrdigkeiten-1.jpeg);">
   <div>
-    <%= simple_form_for([current_user, @starred_location], method: :post ) do |f| %>
-      <%= f.input :location_id, as: :hidden, input_html: { value: @location.id } %>
-        <%= button_tag type: 'submit', class: 'favorite' do %>
-          <% if @starred_locations.include?(@location.id) %>
-            <i class="fas fa-star fa-lg" style="position: absolute; left: 10px; top: 50px; color: gold;"></i>
-          <% else %>
-            <i class="far fa-star fa-lg" style="position: absolute; left: 10px; top: 50px;"></i>
-          <% end %>
+    <% if @starred_locations.include?(@location.id) %>
+        <%= simple_form_for([current_user, @this_starred_location], method: :delete ) do |f| %>
+          <%= f.input :location_id, as: :hidden, input_html: { value: @location.id } %>
+            <%= button_tag type: 'submit', class: 'favorite' do %>
+                <i class="fas fa-star fa-lg" style="position: absolute; left: 10px; top: 50px; color: gold;"></i>
+            <% end %>
         <% end %>
-    <% end %>
+      <% else %>
+        <%= simple_form_for([current_user, @starred_location], method: :post ) do |f| %>
+          <%= f.input :location_id, as: :hidden, input_html: { value: @location.id } %>
+            <%= button_tag type: 'submit', class: 'favorite' do %>
+                <i class="far fa-star fa-lg" style="position: absolute; left: 10px; top: 50px;"></i>
+            <% end %>
+        <% end %>
+      <% end %>
   </div>
 </div>
 <div class="container">

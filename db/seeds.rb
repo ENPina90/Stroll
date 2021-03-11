@@ -50,7 +50,7 @@ Category.destroy_all
 # puts site['facts']
 # puts site['teasertext']
 
-categories = ["Attractions", "Architecture", "Bar", "Cafe", "Gallery", "Hidden Places", "History", "Memorial", "Nieghborhood" "Park", "Restaurant", "Shop", "Sculpture", "Street Art", "View"]
+categories = ["Attractions", "Architecture", "Bar", "Cafe", "Gallery", "Hidden Places", "History", "Memorial", "Nieghborhood", "Park", "Restaurant", "Shop", "Sculpture", "Street Art", "View"]
 
 categories.each {|category| Category.create!(name: category) }
 
@@ -82,7 +82,8 @@ categories.each {|category| Category.create!(name: category) }
 require 'csv'
 
 csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
-filepath    = 'db/Seednew.csv'
+filepath    = 'db/seed_real.csv'
+counter = 0
 
 CSV.foreach(filepath, csv_options) do |row|
   Location.create!(
@@ -99,10 +100,11 @@ CSV.foreach(filepath, csv_options) do |row|
     cost: row['cost'],
     significance: row['Significance'],
     lang: 'en',
-    category: ['Category'],
-    photo_url: ['Photo_url'],
+    category: row['Category'],
+    photo_url: row['Photo_url'],
   )
-  puts "You created Loaction # #{Location.count}. #{Location.last.name}, good job!"
+  counter += 1
+  puts "You created Loaction # #{counter}, good job!"
 end
 
 "All done thanks for playing"

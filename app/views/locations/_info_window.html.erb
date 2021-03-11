@@ -1,5 +1,5 @@
 <div class="card-location">
-  <%= image_tag "#{location.photo_url}"%>
+  <%= image_tag 'https://www.visitberlin.de/system/files/styles/visitberlin_teaser_full_width_visitberlin_mobile_1x/private/image/iStock_000074120341_Double_DL_PPT_0.jpg?h=a66ba266&itok=tD4ERppn' %>
   <div>
     <div class='card-padding'>
       <h2><%= location.name %></h2>
@@ -8,21 +8,15 @@
       <p><%= link_to  "See more", location_path(location) %></p>
     </div>
     <div class="card-location-user">
-      <% @this_starred_location = StarredLocation.where(location_id: location.id, user_id: current_user.id).first %>
-      <% if @starred_locations.include?(location.id) %>
-        <%= simple_form_for([current_user, @this_starred_location], method: :delete ) do |f| %>
-          <%= f.input :location_id, as: :hidden, input_html: { value: location.id } %>
-            <%= button_tag type: 'submit', class: 'favorite' do %>
-                <i class="fas fa-star" style="color: gold;"></i>
+      <%= simple_form_for([current_user, @starred_location], method: :post ) do |f| %>
+        <%= f.input :location_id, as: :hidden, input_html: { value: location.id } %>
+          <%= button_tag type: 'submit', class: 'favorite' do %>
+            <% if @starred_locations.include?(location.id) %>
+              <i class="fas fa-star" style="color: gold;"></i>
+            <% else %>
+              <i class="far fa-star" style=""></i>
             <% end %>
-        <% end %>
-      <% else %>
-        <%= simple_form_for([current_user, @starred_location], method: :post ) do |f| %>
-          <%= f.input :location_id, as: :hidden, input_html: { value: location.id } %>
-            <%= button_tag type: 'submit', class: 'favorite' do %>
-                <i class="far fa-star" style=""></i>
-            <% end %>
-        <% end %>
+          <% end %>
       <% end %>
     </div>
   </div>

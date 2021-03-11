@@ -9,6 +9,7 @@
       <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown1">
         <%= link_to "Home", root_path, class: "dropdown-item"  if user_signed_in?%>
         <%= link_to "Explore", locations_path, class: "dropdown-item"  if user_signed_in? %>
+        <%= link_to "New Stroll", new_starting_location_path, class: "dropdown-item"  if user_signed_in?%>
         <%= link_to "Saved Strolls", "#", class: "dropdown-item" if user_signed_in? %>
         <%= link_to "Shared Strolls", "#", class: "dropdown-item"  if user_signed_in? %>
       </div>
@@ -16,7 +17,7 @@
 
     <!-- Middle link -->
     <%= link_to "stroll", root_path, class: "nav-link subtitle nav-item text-warning " + yield(:transparent_stroll) %>
-          
+
     <!-- Right icon dropdown -->
     <div class="nav-item dropdown">
       <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">

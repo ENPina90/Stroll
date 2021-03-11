@@ -7,31 +7,36 @@
   <div class="strollbanner">
     <h1><br>Your<br>Interests</h1>
   </div>
-    <div class="container">
-  <%= simple_form_for @stroll_setting do |f| %>
-    <h2>Significance</h2>
-    <div class="col-12 mb-1 align-self-center">
-      <label for="customRange3" class="form-label"></label>
-        <input name="significance" type="range" class="form-range" min="1" max="3" step="1" id="customRange3" oninput="this.nextElementSibling.value = this.value">
-      <output></output>
-    </div>
-    <%= f.input :cost, as: :boolean %>
-    <%= f.input :newness,  as: :boolean %>
-    <%= f.association :categories, as: :check_boxes, multiple: true %>
-    <h2>Your Locations</h2>
-    <div class="container">
+  <div class="container">
+    <%= simple_form_for @stroll_setting do |f| %>
+      <!-- <h2>Significance</h2>
+      <div class="col-12 mb-1 align-self-center">
+        <label for="customRange3" class="form-label"></label>
+          <input name="significance" type="range" class="form-range" min="1" max="3" step="1" id="customRange3" oninput="this.nextElementSibling.value = this.value">
+        <output></output>
+      </div> -->
+      <%= f.input :significance, as: :range %>
+      <%= f.input :cost, as: :boolean %>
+      <%= f.input :newness, as: :boolean %>
+      <%= f.input :attractions %>
+      <%= f.input :architecture %>
+      <%= f.input :bar %>
+      <%= f.input :cafe %>
+      <%= f.input :hidden_places %>
+      <%= f.input :history %>
+      <%= f.input :memorial %>
+      <%= f.input :nieghborhood %>
+      <%= f.input :park %>
+      <%= f.input :restaurant %>
+      <%= f.input :shop %>
+      <%= f.input :sculpture %>
+      <%= f.input :view %>
       <%= f.input :home_address, placeholder: 'Home address', label: false %>
       <%= f.input :work_address, placeholder: 'Work address', label: false %>
-    </div>
-
-    <div class="row">
-      <div class="col-12">
-          <%= f.submit "Save", class: "btn btn-submit btn-secondary" %>
-      </div>
-    </div>
+      <%= f.submit "Save", class: "btn btn-submit btn-secondary" %>
+    <% end %>
     <br>
   </div>
-  <% end %>
 </div>
 <script>
    $(function(){

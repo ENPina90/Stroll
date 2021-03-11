@@ -95,7 +95,7 @@ CSV.foreach(filepath, csv_options) do |row|
     creator: row['Creator'],
     date: row['Date'],
     intro: row['Intro'],
-    content: row['Description'],
+    content: row['Content'],
     sources: row['Sources'],
     cost: row['cost'],
     significance: row['Significance'],

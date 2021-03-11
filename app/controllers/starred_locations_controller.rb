@@ -26,7 +26,11 @@ class StarredLocationsController < ApplicationController
     @starred_location.location = Location.find(params[:starred_location][:location_id])
     @starred_location.save
     flash[:notice] = "Favorite added"
-    redirect_to(locations_path)
+    if params[:hint] == 'true'
+      redirect_to(location_path(Location.find(params[:starred_location][:location_id])))
+    else
+      redirect_to(locations_path)
+    end
   end
 
   def destroy
@@ -35,6 +39,10 @@ class StarredLocationsController < ApplicationController
     authorize @starred_location
     @starred_location.destroy
     flash[:alert] = "Favorite removed"
-    redirect_to(locations_path)
+    if params[:hint] == 'true'
+      redirect_to(location_path(Location.find(params[:starred_location][:location_id])))
+    else
+      redirect_to(locations_path)
+    end
   end
 end

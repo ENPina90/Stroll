@@ -3,6 +3,7 @@
     <% if @starred_locations.include?(@location.id) %>
         <%= simple_form_for([current_user, @this_starred_location], method: :delete ) do |f| %>
           <%= f.input :location_id, as: :hidden, input_html: { value: @location.id } %>
+          <%= hidden_field_tag :hint, true %>
             <%= button_tag type: 'submit', class: 'favorite' do %>
                 <i class="fas fa-star fa-lg" style="position: absolute; left: 10px; top: 50px; color: gold;"></i>
             <% end %>
@@ -10,6 +11,7 @@
       <% else %>
         <%= simple_form_for([current_user, @starred_location], method: :post ) do |f| %>
           <%= f.input :location_id, as: :hidden, input_html: { value: @location.id } %>
+          <%= hidden_field_tag :hint, true %>
             <%= button_tag type: 'submit', class: 'favorite' do %>
                 <i class="far fa-star fa-lg" style="position: absolute; left: 10px; top: 50px;"></i>
             <% end %>
@@ -62,6 +64,7 @@
           <p style="font-style: italic; color: #a09f9b; margin-bottom: 0;">- <%= User.find(note.user_id).user_name %>, <%= note.created_at.to_s[0..10] %></p>
         </div>
       <% end %>
+    <div m-4></div>
   </div>
 </div>
 

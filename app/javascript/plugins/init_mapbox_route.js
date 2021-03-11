@@ -38,7 +38,6 @@ const initMapboxRoute = () => {
     }));
     map.on('load', function () {
       var start = JSON.parse(document.getElementById("start").dataset.coordinates)
-      var end = JSON.parse(document.getElementById("end").dataset.coordinates)
       var locationsCoordinates = []
       var locationsDescriptions = []
       var locations = document.querySelectorAll(".location")
@@ -46,6 +45,7 @@ const initMapboxRoute = () => {
         locationsCoordinates.push(JSON.parse(location.dataset.coordinates))
         locationsDescriptions.push(location.dataset.description)
       });
+      var end = JSON.parse(document.getElementById("end").dataset.coordinates)
       getRoute(end, map);
       map.addControl(
         new mapboxgl.GeolocateControl({
@@ -118,6 +118,7 @@ function getRoute(end, map) {
   locations.forEach(location => {
     locationsCoordinates.push(JSON.parse(location.dataset.coordinates))
   })
+
   var string = ''
   locationsCoordinates.forEach(i => string += ';' + i[0] + ',' +i[1] )
   var url = 'https://api.mapbox.com/directions/v5/mapbox/walking/' + start[0] + ',' + start[1] +  string + '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
@@ -165,12 +166,13 @@ function getRoute(end, map) {
       });
     }
     var instructions = document.getElementById('instructions');
-    var steps = data.legs[0].steps;
+    var steps = data.legs[1].steps;
+    console.log(steps)
     var tripInstructions = [];
     for (var i = 0; i < steps.length; i++) {
       tripInstructions.push('<br><li>' + steps[i].maneuver.instruction) + '</li>';
-      instructions.innerHTML = '<br><span class="directions">Directions</span>' + tripInstructions;
-      // instructions.innerHTML = '<br><span class="duration">Trip duration: ' + Math.floor(data.duration / 60) + ' min 🚴 </span>' + tripInstructions;
+      instructions.innerHTML = '<br><span class="directions">Directions</span>'+ + tripInstructions;
+      instructions.innerHTML = '<br><span class="duration">Trip duration: ' + Math.floor(data.duration / 60) + ' min  </span>' + tripInstructions;
     }
   };
   req.send();

@@ -103,9 +103,9 @@ ActiveRecord::Schema.define(version: 2021_03_10_134758) do
   end
 
   create_table "stroll_settings", force: :cascade do |t|
-    t.string "category"
+    t.string "category", default: "3"
     t.integer "significance"
-    t.boolean "cost"
+    t.boolean "cost", default: true
     t.boolean "newness", default: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false

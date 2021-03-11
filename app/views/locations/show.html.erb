@@ -1,4 +1,4 @@
-<div class="banner" style="background-image: url(https://www.voucherwonderland.com/reisemagazin/wp-content/uploads/2017/03/Berlin-Sehensw%C3%BCrdigkeiten-1.jpeg);">
+<div class="banner" style="background-image: url(<%= @location.photo_url.present? ? @location.photo_url : "https://www.voucherwonderland.com/reisemagazin/wp-content/uploads/2017/03/Berlin-Sehensw%C3%BCrdigkeiten-1.jpeg" %>);">
   <div>
     <% if @starred_locations.include?(@location.id) %>
         <%= simple_form_for([current_user, @this_starred_location], method: :delete ) do |f| %>
@@ -18,21 +18,28 @@
   </div>
 </div>
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 m-2">
-      <h1 class="title" style="font-size: 35px; line-height: 40px;"><%= @location.name %></h1>
+    <div class="row justify-content-center">
+      <div class="col-12 m-2">
+        <h1 class="title" style="font-size: 35px; line-height: 40px;"><%= @location.name %></h1>
+      </div>
     </div>
-  </div>
-  <div class="row justify-content-center w-90 pr-2 pl-2">
-    <p>Category <strong><%= @location.category.capitalize %></strong> | Cost: <strong><%= @location.cost %> €</strong></p>
-    <p style="margin: auto;"><%= @location.address %></p>
-  </div>
-  <div class="row justify-content-left w-90 pr-3 pl-3 mt-3">
-    <p><%= @location.content %>lalala</p>
-  </div>
-  <div class="row justify-content-left w-90 pr-3 pl-3 mt-2">
-    <p><%= @location.info %> this is info</p>
-  </div>
+    <div class="row justify-content-center w-90 pr-2 pl-2">
+      <p>Category <strong><%= @location.category.capitalize %></strong> | Cost: <strong><%= @location.cost %> €</strong></p>
+      <p style="margin: auto;"><%= @location.address %></p>
+    </div>
+    <div class="row justify-content-center w-90 pr-3 pl-3 mt-3">
+      <p><strong><%= @location.intro %></strong></p>
+    </div>
+    <% if @location.content.present? %>
+      <div class="row justify-content-left w-90 pr-3 pl-3 mt-3">
+        <p><%= @location.content %></p>
+      </div>
+    <% end %>
+    <% if @location.info.present? %>
+      <div class="row justify-content-left w-90 pr-3 pl-3 mt-2">
+        <p><%= @location.info %></p>
+      </div>
+    <% end %>
 
   <hr>
 

@@ -17,6 +17,6 @@ Rails.application.routes.draw do
   resources :starting_locations, only: [ :new ]
 
   resources :walks do
-    resources :starting_locations, only: [ :index, :show, :create ]
+    resources :starting_locations, only: [ :index, :show, :create, :destroy ]
   end
 end

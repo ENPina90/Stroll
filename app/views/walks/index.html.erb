@@ -1,0 +1,10 @@
+<ul>
+<% @first_walk = @walks.first %>
+  <li><%= link_to @first_walk.id, walk_path(@first_walk) %> | <%= @first_walk.starting_location&.address %></li> 
+<br>
+  <% @walks.first(5).each do |walk| %>
+    <li><%= link_to walk.id, walk_path(walk) %> | <%= walk.starting_location&.address %></li>  
+  <% end %>
+
+</ul>
+

@@ -43,3 +43,10 @@
     text-shadow: 0px 4px 5px rgba(0, 0, 0, 0.04);
   }
 }
+
+.page-container {
+  display: grid;
+  max-height: 100vh;
+  height: 100vh;
+  grid-template-rows: auto 1fr auto;
+}

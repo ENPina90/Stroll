@@ -1,4 +1,4 @@
-<div class="navbar navbar-light navbar-expand-sm <%= yield(:transparent_navbar) %>">
+<div class="navbar sticky-top navbar-light navbar-expand-sm <%= yield(:transparent_navbar) %>">
 
   <% if user_signed_in? %>
     <!-- Left icon dropdown -->
@@ -9,7 +9,7 @@
       <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown1">
         <%= link_to "Home", root_path, class: "dropdown-item"  if user_signed_in?%>
         <%= link_to "Explore", locations_path, class: "dropdown-item"  if user_signed_in? %>
-        <%= link_to "Saved Strolls", "#", class: "dropdown-item" if user_signed_in? %>
+        <%= link_to "Saved Strolls", walks_path, class: "dropdown-item" if user_signed_in? %>
         <%= link_to "Shared Strolls", "#", class: "dropdown-item"  if user_signed_in? %>
       </div>
     </div>

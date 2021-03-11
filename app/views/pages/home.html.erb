@@ -17,7 +17,7 @@
     <br>
     <div class="d-flex justify-content-around mt-10">
       <%= link_to image_tag("btn_interests.svg"), edit_stroll_setting_path(current_user.stroll_setting) if user_signed_in? %>
-      <%= link_to image_tag("btn_saved.svg"), walk_path(current_user.stroll_setting.walk) if user_signed_in? && current_user.stroll_setting.walk.present? %>
+      <%= link_to image_tag("btn_saved.svg"), walks_path(current_user.stroll_setting.walk) if user_signed_in? && current_user.stroll_setting.walk.present? %>
       <%= link_to image_tag("btn_profile.svg"), root_path if user_signed_in? %>
     </div>
     <div class="strollfooter">

@@ -69,7 +69,8 @@ const initMapboxRoute = () => {
         emptyArray.push({'type': 'Feature',
           'properties': {
             'description': locationsDescriptions[i]
-              },
+
+          },
             'geometry': {
               'type': 'Point',
               'coordinates': element}})
@@ -166,7 +167,7 @@ function getRoute(end, map) {
       });
     }
     var instructions = document.getElementById('instructions');
-    var steps = data.legs[1,2].steps;
+    var steps = data.legs[0,1].steps;
     console.log(steps)
     var tripInstructions = [];
     for (var i = 0; i < steps.length; i++) {

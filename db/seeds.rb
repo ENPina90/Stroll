@@ -82,7 +82,7 @@ categories.each {|category| Category.create!(name: category) }
 require 'csv'
 
 csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
-filepath    = 'db/seed_real.csv'
+filepath    = 'db/seednew.csv'
 counter = 0
 
 CSV.foreach(filepath, csv_options) do |row|

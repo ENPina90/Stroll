@@ -5,9 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :walks
-  has_many :starred_locations
+  has_many :starred_locations,  dependent: :destroy
   has_many :locations, through: :starred_locations
-  has_one :stroll_setting
+  has_one :stroll_setting, dependent: :destroy
   has_many :notes
   has_many :locations, through: :notes
 

@@ -20,6 +20,7 @@ class StarredLocationsController < ApplicationController
   end
 
   def create
+    # raise
     @starred_location = StarredLocation.new
     authorize @starred_location
     @starred_location.user = current_user

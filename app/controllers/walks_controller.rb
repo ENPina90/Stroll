@@ -14,13 +14,12 @@ class WalksController < ApplicationController
   end
 
   def generate
-
-    # km = @walk.starting_location.duration
+    min = @walk.starting_location.duration
+    distance = min / 30.to_f
     total = 0
     points = []
     start = @walk.starting_location
     points.push(start)
-    distance = 2.5
     nearby = Location.geocoded.near(start, distance, units: :km)
     oldloc = nearby.order("distance").last(5).sample
     newloc = start
@@ -56,7 +55,7 @@ class WalksController < ApplicationController
     oldloc = @walk.starting_location
     counter = 0
 
-    while total < distance * 2
+    while total < distance * 2.5
       if newloc.latitude > oldloc.latitude
         cord = [oldloc.to_coordinates, newloc.to_coordinates]
       else

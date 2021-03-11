@@ -1,18 +1,17 @@
 <div id="home-container">
   <div class="strollbanner">
-    <div class="logobig">
       <div class="container">
+        <%= simple_form_for [@walk, @starting_location] do |f| %>
         <div class="row">
-          <div class="col-12 mb-3">
-            <%= simple_form_for [@walk, @starting_location] do |f| %>
-              <input class="rounded" name="address" type="text" id="starting_location_address" placeholder="Start my stroll from...">
+          <div class="col-12 mb-1 align-self-center rangefont">
+            <label for="customRange3" class="form-label">Stroll Length (minutes):</label>
+              <input name="duration" type="range" class="form-range" min="10" max="99" step="5" id="customRange3" oninput="this.nextElementSibling.value = this.value">
+              <output>55</output>
           </div>
         </div>
         <div class="row">
-          <div class="col-12 mb-1 align-self-center">
-            <label for="customRange3" class="form-label">Walk duration</label>
-              <input name="duration" type="range" class="form-range" min="10" max="120" step="5" id="customRange3" oninput="this.nextElementSibling.value = this.value">
-              <output>35</output>
+          <div class="col-12 mb-3">
+              <input class="rounded" name="address" type="text" id="starting_location_address" placeholder="Start my stroll from...">
           </div>
         </div>
         <div class="row">
@@ -20,7 +19,6 @@
               <%= f.submit "Go", class: "btn btn-submit btn-secondary" %>
             <% end %>
           </div>
-        </div>
         </div>
     </div>
   </div>

@@ -31,8 +31,10 @@
       <%= f.input :shop %>
       <%= f.input :sculpture %>
       <%= f.input :view %>
-      <%= f.input :home_address, placeholder: 'Home address', label: false %>
-      <%= f.input :work_address, placeholder: 'Work address', label: false %>
+      <input class="rounded" name="home_address" type="text" id="home_location_address" placeholder="Home address">
+      <div class="m-3"></div>
+      <input class="rounded" name="work_address" type="text" id="work_location_address" placeholder="Work address">
+      <div class="m-3"></div>
       <%= f.submit "Save", class: "btn btn-submit btn-secondary" %>
     <% end %>
     <br>

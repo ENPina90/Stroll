@@ -9,6 +9,14 @@ const initAutocomplete = () => {
   if (startingAddressInput) {
     places({ container: startingAddressInput });
   }
+  const homeAddressInput = document.getElementById('home_location_address');
+  if (homeAddressInput) {
+    places({ container: homeAddressInput });
+  }
+  const workAddressInput = document.getElementById('work_location_address');
+  if (workAddressInput) {
+    places({ container: workAddressInput });
+  }
 };
 
 export { initAutocomplete };

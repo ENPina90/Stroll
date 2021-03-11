@@ -17,7 +17,7 @@
     </div>
     <%= f.input :cost, as: :boolean %>
     <%= f.input :newness,  as: :boolean %>
-    <%= f.input :category, collection: Category.all, as: :check_boxes, multiple: true %>
+    <%= f.association :categories, as: :check_boxes, multiple: true %>
     <h2>Your Locations</h2>
     <div class="container">
       <%= f.input :home_address, placeholder: 'Home address', label: false %>

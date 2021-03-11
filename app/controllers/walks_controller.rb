@@ -14,8 +14,8 @@ class WalksController < ApplicationController
   end
 
   def generate
-    # raise
-    km = @walk.starting_location.duration
+
+    # km = @walk.starting_location.duration
     total = 0
     points = []
     start = @walk.starting_location
@@ -33,19 +33,22 @@ class WalksController < ApplicationController
       end
       enroute = Location.within_bounding_box(cord)
       puts "before .near"
-      newloc = enroute.near(newloc).order("distance").reject { | loc | loc.to_coordinates == newloc.to_coordinates }.first(3).sample
+      newloc = enroute.near(newloc).order("distance").reject { | loc | loc.to_coordinates == newloc.to_coordinates }.first(5).sample
       puts newloc.class == Location
       puts "after .near"
       newdist = points.last.distance_to(newloc)
       puts newdist
       # oldloc = points.last
-      break if newloc.class != Location
+      break if newloc.class != Location || newdist == 0.0
       if newdist != 0 && !newloc.nil?
         total += newdist if counter > 0
         points.push(newloc)
       end
       puts total
       counter += 1
+      # if newdist <= 0.0
+      #   raise
+      # end
     end
 
     points.delete_at(1)
@@ -67,13 +70,16 @@ class WalksController < ApplicationController
       newdist = points.last.distance_to(newloc)
       puts newdist
       # oldloc = points.last
-      break if newloc.class != Location
+      break if newloc.class != Location || newdist == 0.0
       if newdist != 0 && !newloc.nil?
         total += newdist if counter > 0
         points.push(newloc)
       end
       puts total
       counter += 1
+      if newdist <= 0.0
+        raise
+      end
     end
     # while total < distance * 2 do
     #   oldloc = points.last

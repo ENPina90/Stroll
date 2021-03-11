@@ -92,6 +92,10 @@ class WalksController < ApplicationController
     StartingLocation.last.near
   end
 
+  def index
+    @walks = policy_scope(Walk).order(created_at: :desc)
+  end
+
   private
 
   def walk_params
@@ -99,6 +103,6 @@ class WalksController < ApplicationController
   end
 
   def set_walk
-    @walk = current_user.walks.last
+    @walk = Walk.where(user: current_user).find(params[:id])
   end
 end

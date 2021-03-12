@@ -1,0 +1,188 @@
+<%= content_for(:transparent_navbar, "transparent-navbar") %>
+
+
+ <div class="container">
+    <%= simple_form_for @stroll_setting do |f| %>
+      <!-- <h2>Significance</h2>
+      <div class="col-12 mb-1 align-self-center">
+        <label for="customRange3" class="form-label"></label>
+          <input name="significance" type="range" class="form-range" min="1" max="3" step="1" id="customRange3" oninput="this.nextElementSibling.value = this.value">
+        <output></output>
+      </div> -->
+      <h2>Preferences</h2>
+      <%= f.input :significance, as: :range %>
+      <%= f.input :cost, as: :boolean %>
+      <%= f.input :newness, as: :boolean %>
+      <h2>Interests</h2>
+      <%= f.input :attractions %>
+      <%= f.input :architecture %>
+      <%= f.input :bar %>
+      <%= f.input :cafe %>
+      <%= f.input :gallery %>
+      <%= f.input :hidden_places %>
+      <%= f.input :history %>
+      <%= f.input :memorial %>
+      <%= f.input :nieghborhood %>
+      <%= f.input :park %>
+      <%= f.input :restaurant %>
+      <%= f.input :sculpture %>
+      <%= f.input :shop %>
+      <%= f.input :street_art %>
+      <%= f.input :view %>
+      <%= f.input :home_address, placeholder: 'Home address', label: false %>
+      <%= f.input :work_address, placeholder: 'Work address', label: false %>
+      <%= f.submit "Save", class: "btn btn-submit btn-secondary" %>
+    <% end %>
+    <br>
+  </div>
+</div>
+<script>
+   $(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+   })
+</script>
+
+
+</h2>
+    <h2>Cost</h2>
+    <div class="container">
+      <div class="custom-control custom-switch custom-switch-xl">
+        <%= f.input :cost, label: false, input_html: {as: :hidden}%>
+        <label class="custom-control-label" for="customSwitch1"></label>
+      </div>
+    </div>
+
+    <h2>Newness</h2>
+    <div class="container">
+      <div class="custom-control custom-switch custom-switch-xl">
+        <input name="stroll_setting[newness]" type="checkbox" class="custom-control-input" id="customSwitch2">
+        <label class="custom-control-label" for="customSwitch2"></label>
+      </div>
+    </div>
+    <br>
+    <h2>Choose your interests...</h2>
+    <br>
+    <ul class="settings">
+      <li><input name="stroll_setting[category]" type="checkbox" id="Attractions" checked/>
+        <label for="Attractions"><div class="category">Attractions</div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Brandenburger_Tor_abends.jpg/1200px-Brandenburger_Tor_abends.jpg" /></label>
+      </li>
+      <li><input name="stroll_setting[architecture]" type="checkbox" id="Architecture" checked/>
+        <label for="Architecture"><img src="https://media2.heinze.de/m1/36/12802136/images/40/12802140px1920x1358.jpg" /></label>
+      </li>
+      <li><input name="stroll_setting[bar]" type="checkbox" id="Bars" checked/>
+        <label for="Bars"><img src="https://miro.medium.com/max/10020/0*pVTtTdJA65mVudPx" /></label>
+      </li>
+      <li><input name="stroll_setting[cafe]" type="checkbox" id="Cafes" checked/>
+        <label for="Cafes"><img src="https://i.pinimg.com/originals/c7/9f/e4/c79fe4cf84e7546cb08e08e1d66f1ce9.jpg" /></label>
+      </li>
+       <li><input name="stroll_setting[gallery]" type="checkbox" id="Galleries" checked/>
+        <label for="Galleries"><img src="https://www.artnews.com/wp-content/uploads/2018/11/11-18paaeforest-bess1.jpg" /></label>
+      </li>
+       <li><input name="stroll_setting[history]" type="checkbox" id="History" checked/>
+        <label for="History"><img src="https://cdn.britannica.com/51/127851-050-D0670589/barrier-Brandenburg-Gate-Berlin-Wall-version-1961.jpg" /></label>
+      </li>
+      <li><input name="stroll_setting[museum]" type="checkbox" id="Museums" checked/>
+        <label for="Museums"><img src="https://www.visitberlin.de/system/files/styles/visitberlin_hero_visitberlin_desktop_2x/private/image/NaturkundeMuseum_Sauriersaal_04__Foto_%C2%A9_Carola-Radke-MfN_DL_PPT_0.jpg?h=10d202d3&itok=3r9Pr0Ht" /></label>
+      </li>
+       <li><input name="stroll_setting[shop]" type="checkbox" id="shop" checked/>
+        <label for="Museums"><img src="https://www.visitberlin.de/system/files/styles/visitberlin_hero_visitberlin_desktop_2x/private/image/NaturkundeMuseum_Sauriersaal_04__Foto_%C2%A9_Carola-Radke-MfN_DL_PPT_0.jpg?h=10d202d3&itok=3r9Pr0Ht" /></label>
+      </li>
+
+   <!--    <li><input name="category" type="checkbox" id="Sculpture" checked/>
+        <label for="Sculpture"><img src="https://media-cdn.tripadvisor.com/media/photo-s/11/bf/76/a7/wonderful-monument.jpg" /></label>
+      </li>
+      <li><input name="category" type="checkbox" id="Street Art" checked/>
+        <label for="Street Art"><img src="https://cdn1.matadornetwork.com/blogs/1/2019/05/Graffiti-House-in-Easten-Berlin-1200x850.jpg" /></label>
+      </li>
+    </ul> -->
+
+
+
+<div class="backgound">
+
+  <div class="strollbanner">
+    <h1><br>Customize Stroll</h1>
+  </div>
+  <%= simple_form_for @stroll_setting do |f| %>
+
+    <h2>Significance</h2>
+    <div class="col-12 mb-1 align-self-center">
+      <label for="customRange3" class="form-label"></label>
+        <input name="Significance" type="range" class="form-range" min="1" max="3" step="1" id="customRange3" oninput="this.nextElementSibling.value = this.value">
+      <output></output>
+    </div>
+
+    <h2>Cost</h2>
+    <div class="container">
+      <div class="custom-control custom-switch custom-switch-xl">
+        <input name="Cost" type="checkbox" class="custom-control-input" id="customSwitch1" checked>
+        <label class="custom-control-label" for="customSwitch1"></label>
+      </div>
+    </div>
+
+    <h2>Newness</h2>
+    <div class="container">
+      <div class="custom-control custom-switch custom-switch-xl">
+        <input name="Newness" type="checkbox" class="custom-control-input" id="customSwitch2" checked>
+        <label class="custom-control-label" for="customSwitch2"></label>
+      </div>
+    </div>
+    <br>
+    <h2>Choose your interests...</h2>
+    <br>
+    <ul class="settings">
+      <li><input name="category" type="checkbox" id="Attractions" checked/>
+        <label for="Attractions"><div class="category">Attractions</div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Brandenburger_Tor_abends.jpg/1200px-Brandenburger_Tor_abends.jpg" /></label>
+      </li>
+      <li><input name="category" type="checkbox" id="Architecture" checked/>
+        <label for="Architecture"><img src="https://media2.heinze.de/m1/36/12802136/images/40/12802140px1920x1358.jpg" /></label>
+      </li>
+      <li><input name="category" type="checkbox" id="Bars" checked/>
+        <label for="Bars"><img src="https://miro.medium.com/max/10020/0*pVTtTdJA65mVudPx" /></label>
+      </li>
+      <li><input name="category" type="checkbox" id="Cafes" checked/>
+        <label for="Cafes"><img src="https://i.pinimg.com/originals/c7/9f/e4/c79fe4cf84e7546cb08e08e1d66f1ce9.jpg" /></label>
+      </li>
+       <li><input name="category" type="checkbox" id="Galleries" checked/>
+        <label for="Galleries"><img src="https://www.artnews.com/wp-content/uploads/2018/11/11-18paaeforest-bess1.jpg" /></label>
+      </li>
+       <li><input name="category" type="checkbox" id="History" checked/>
+        <label for="History"><img src="https://cdn.britannica.com/51/127851-050-D0670589/barrier-Brandenburg-Gate-Berlin-Wall-version-1961.jpg" /></label>
+      </li>
+      <li><input name="category" type="checkbox" id="Museums" checked/>
+        <label for="Museums"><img src="https://www.visitberlin.de/system/files/styles/visitberlin_hero_visitberlin_desktop_2x/private/image/NaturkundeMuseum_Sauriersaal_04__Foto_%C2%A9_Carola-Radke-MfN_DL_PPT_0.jpg?h=10d202d3&itok=3r9Pr0Ht" /></label>
+      </li>
+      <!-- <li><input type="checkbox" id="Shops" checked/>
+        <label for="Shops"><img src="https://www.stores-shops.de/wp-content/uploads/2019/Stores/Create-by-Obi_Koeln.jpg" /></label>
+      </li> -->
+      <li><input name="category" type="checkbox" id="Sculpture" checked/>
+        <label for="Sculpture"><img src="https://media-cdn.tripadvisor.com/media/photo-s/11/bf/76/a7/wonderful-monument.jpg" /></label>
+      </li>
+      <li><input name="category" type="checkbox" id="Street Art" checked/>
+        <label for="Street Art"><img src="https://cdn1.matadornetwork.com/blogs/1/2019/05/Graffiti-House-in-Easten-Berlin-1200x850.jpg" /></label>
+      </li>
+    </ul>
+
+    <h2>Your Locations</h2>
+      <div class="container">
+        <%= f.input :home_address, placeholder: 'Home address', label: false %>
+        <%= f.input :work_address, placeholder: 'Work address', label: false %>
+      </div>
+    <div>
+
+    <div class="container">
+    <div class="row">
+      <div class="col-12">
+          <%= f.submit "Save", class: "btn btn-submit btn-secondary" %>
+      </div>
+    </div>
+    <br>
+  </div>
+  <% end %>
+</div>
+
+<script>
+   $(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+   })
+</script>

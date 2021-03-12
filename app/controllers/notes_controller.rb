@@ -12,7 +12,7 @@ class NotesController < ApplicationController
       flash[:notice] = "Note saved"
       redirect_to(location_path(Location.find(params[:location_id])))
     else
-      flash[:alert] = "Note not saved"
+      flash[:alert] = "Note not saved, at least 10 characters"
       redirect_to(location_path(Location.find(params[:location_id])))
     end
   end

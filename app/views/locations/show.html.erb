@@ -45,7 +45,7 @@
 
   <hr>
 
-  <div class="row w-90 pr-3 pl-3 align-items-center">
+  <div class="row w-90 pr-3 pl-3 mb-5 align-items-center">
     <h1 class="subtitle">Notes:</h1>
     <button type="button" id="formButton" onclick="ShowAndHide()" class="btn btn-square btn-primary" style="position: relative; right: -52vw; width: 100px;
     height: 35px;">Add note</button>
@@ -64,7 +64,6 @@
           <p style="font-style: italic; color: #a09f9b; margin-bottom: 0;">- <%= User.find(note.user_id).user_name %>, <%= note.created_at.to_s[0..10] %></p>
         </div>
       <% end %>
-    <div m-4></div>
   </div>
 </div>
 

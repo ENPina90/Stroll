@@ -3,6 +3,8 @@ class LocationsController < ApplicationController
     @locations = policy_scope(Location)
     @starred_location = StarredLocation.new
     @starred_locations = StarredLocation.where(user: current_user).map(&:location_id)
+    # @location = Location.find(params[:id])
+    # @this_starred_location = StarredLocation.where(location_id: @location.id, user_id: current_user.id).first
     @markers = @locations.geocoded.map do |location|
       {
         lat: location.latitude,

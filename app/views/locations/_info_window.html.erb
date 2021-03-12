@@ -8,15 +8,22 @@
       <p><%= link_to  "See more", location_path(location) %></p>
     </div>
     <div class="card-location-user">
-      <%= simple_form_for([current_user, @starred_location], method: :post ) do |f| %>
-        <%= f.input :location_id, as: :hidden, input_html: { value: location.id } %>
-          <%= button_tag type: 'submit', class: 'favorite' do %>
-            <% if @starred_locations.include?(location.id) %>
-              <i class="fas fa-star" style="color: gold;"></i>
-            <% else %>
-              <i class="far fa-star" style=""></i>
+      <% if @starred_locations.include?(location.id) %>
+        <%= simple_form_for([current_user, @starred_location], method: :delete ) do |f| %>
+          <%= f.input :location_id, as: :hidden, input_html: { value: location.id } %>
+          <%= hidden_field_tag :hint, true %>
+            <%= button_tag type: 'submit', class: 'favorite' do %>
+                <i class="fas fa-star fa-lg" style="color: gold;"></i>
             <% end %>
-          <% end %>
+        <% end %>
+      <% else %>
+        <%= simple_form_for([current_user, @starred_location], method: :post ) do |f| %>
+          <%= f.input :location_id, as: :hidden, input_html: { value: location.id } %>
+          <%= hidden_field_tag :hint, true %>
+            <%= button_tag type: 'submit', class: 'favorite' do %>
+                <i class="far fa-star fa-lg"></i>
+            <% end %>
+        <% end %>
       <% end %>
     </div>
   </div>

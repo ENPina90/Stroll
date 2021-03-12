@@ -111,10 +111,12 @@ ActiveRecord::Schema.define(version: 2021_03_10_134758) do
     t.boolean "architecture", default: true
     t.boolean "bar", default: true
     t.boolean "cafe", default: true
+    t.boolean "culture", default: true
     t.boolean "gallery", default: true
     t.boolean "hidden_places", default: true
     t.boolean "history", default: true
     t.boolean "memorial", default: true
+    t.boolean "museum", default: true
     t.boolean "nieghborhood", default: true
     t.boolean "park", default: true
     t.boolean "restaurant", default: true

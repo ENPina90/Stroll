@@ -50,10 +50,6 @@ Category.destroy_all
 # puts site['facts']
 # puts site['teasertext']
 
-categories = ["Attractions", "Architecture", "Bar", "Cafe", "Gallery", "Hidden Places", "History", "Memorial", "Nieghborhood", "Park", "Restaurant", "Shop", "Sculpture", "Street Art", "View"]
-
-categories.each {|category| Category.create!(name: category) }
-
 
 
 
@@ -82,7 +78,7 @@ categories.each {|category| Category.create!(name: category) }
 require 'csv'
 
 csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
-filepath    = 'db/seednew.csv'
+filepath    = 'db/SeedFinal.csv'
 counter = 0
 
 CSV.foreach(filepath, csv_options) do |row|
@@ -97,7 +93,7 @@ CSV.foreach(filepath, csv_options) do |row|
     intro: row['Intro'],
     content: row['Content'],
     sources: row['Sources'],
-    cost: row['cost'],
+    cost: row['Cost'],
     significance: row['Significance'],
     lang: 'en',
     category: row['Category'],

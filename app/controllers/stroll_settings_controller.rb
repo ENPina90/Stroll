@@ -28,6 +28,7 @@ class StrollSettingsController < ApplicationController
   end
 
   def update
+    # raise
     authorize @stroll_setting
     if @stroll_setting.update!(stroll_setting_params)
       redirect_to edit_stroll_setting_path(@stroll_setting), notice: 'Settings were successfully updated'

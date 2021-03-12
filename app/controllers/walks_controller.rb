@@ -13,6 +13,69 @@ class WalksController < ApplicationController
     end
   end
 
+  def filter(locations)
+    significances = []
+    possible = []
+    if current_user.stroll_setting.significance >= 1
+      locations.each { |location| significances.push(location) if location.significance == 1 }
+    end
+    if current_user.stroll_setting.significance >= 2
+      locations.each { |location| significances.push(location) if location.significance == 2 }
+    end
+    if current_user.stroll_setting.significance >= 3
+      locations.each { |location| significances.push(location) if location.significance == 3 }
+    end
+    if current_user.stroll_setting.attractions
+      significances.each { |location| possible.push(location) if location.category == "Attractions" }
+    end
+    if current_user.stroll_setting.history
+      significances.each { |location| possible.push(location) if location.category == "History" }
+    end
+    if current_user.stroll_setting.street_art
+      significances.each { |location| possible.push(location) if location.category == "Street Art" }
+    end
+    if current_user.stroll_setting.architecture
+      significances.each { |location| possible.push(location) if location.category == "Architecture" }
+    end
+    if current_user.stroll_setting.cafe
+      significances.each { |location| possible.push(location) if location.category == "Cafe" }
+    end
+    if current_user.stroll_setting.bar
+      significances.each { |location| possible.push(location) if location.category == "Bars" }
+    end
+    if current_user.stroll_setting.restaurant
+      significances.each { |location| possible.push(location) if location.category == "Restaurant" }
+    end
+    if current_user.stroll_setting.shop
+      significances.each { |location| possible.push(location) if location.category == "Shop" }
+    end
+    if current_user.stroll_setting.museum
+      significances.each { |location| possible.push(location) if location.category == "Museum" }
+    end
+    if current_user.stroll_setting.gallery
+      significances.each { |location| possible.push(location) if location.category == "Gallery" }
+    end
+    if current_user.stroll_setting.memorial
+      significances.each { |location| possible.push(location) if location.category == "Memorial" }
+    end
+    if current_user.stroll_setting.nieghborhood
+      significances.each { |location| possible.push(location) if location.category == "Nieghborhood" }
+    end
+    if current_user.stroll_setting.hidden_places
+      significances.each { |location| possible.push(location) if location.category == "Hidden Places" }
+    end
+    if current_user.stroll_setting.park
+      significances.each { |location| possible.push(location) if location.category == "Park" }
+    end
+    if current_user.stroll_setting.culture
+      significances.each { |location| possible.push(location) if location.category == "Culture" }
+    end
+    if current_user.stroll_setting.cost
+      filtered = possible.reject { |location| location.cost == 1 }
+    end
+    filtered
+  end
+
   def generate
     min = @walk.starting_location.duration
     distance = min / 30.to_f
@@ -21,10 +84,11 @@ class WalksController < ApplicationController
     start = @walk.starting_location
     points.push(start)
     nearby = Location.geocoded.near(start, distance, units: :km)
-    oldloc = nearby.order("distance").last(5).sample
+    oldloc = nearby.order("distance").last(10).sample
     newloc = start
     counter = 0
     while total < distance
+      # tic = counter == 0 ? 5 : 2
       if newloc.latitude > oldloc.latitude
         cord = [oldloc.to_coordinates, newloc.to_coordinates]
       else
@@ -32,7 +96,7 @@ class WalksController < ApplicationController
       end
       enroute = Location.within_bounding_box(cord)
       puts "before .near"
-      newloc = enroute.near(newloc).order("distance").reject { | loc | loc.to_coordinates == newloc.to_coordinates }.first(5).sample
+      newloc = filter(enroute.near(newloc).order("distance").reject { | loc | loc.to_coordinates == newloc.to_coordinates }).first(3).sample
       puts newloc.class == Location
       puts "after .near"
       newdist = points.last.distance_to(newloc)
@@ -55,7 +119,8 @@ class WalksController < ApplicationController
     oldloc = @walk.starting_location
     counter = 0
 
-    while total < distance * 2.5
+    while total < distance * 2.75
+      # tic = counter == 0 ? 5 : 2
       if newloc.latitude > oldloc.latitude
         cord = [oldloc.to_coordinates, newloc.to_coordinates]
       else
@@ -63,7 +128,7 @@ class WalksController < ApplicationController
       end
       enroute = Location.within_bounding_box(cord)
       puts "before .near"
-      newloc = enroute.near(newloc).order("distance").reject { | loc | loc == newloc }.first(3).sample
+      newloc = filter(enroute.near(newloc).order("distance").reject { | loc | loc == newloc }).first(3).sample
       puts newloc
       puts "after .near"
       newdist = points.last.distance_to(newloc)
@@ -92,6 +157,7 @@ class WalksController < ApplicationController
     points.push(@walk.starting_location)
     points
   end
+
 
   def near
     StartingLocation.last.near
